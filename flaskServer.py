@@ -2,7 +2,7 @@
 # Additionally must store locations and pills available to dispense
 # Created Ben Randoing on 02/12/2023
 
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 import json
 import numpy as np
 import sqlalchemy
@@ -13,9 +13,12 @@ app = Flask(__name__)
 test_dict = {'name': 'Ben Randoing'}
 
 @app.route('/')
-@app.route('/home')
+@app.route('/home', methods = ["GET", "POST"])
 def home():
-    return jsonify(test_dict)
+    if request.method == "POST":
+        print(request.get_json())
+    else:
+        return jsonify(test_dict)
 
 if __name__ == '__main__':
     app.run()
