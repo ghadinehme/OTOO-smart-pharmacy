@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Medication Info</h1>
+  <p>Welcome to Smart Pharmacy. Please fill out the form and place an order.
+  </p>
+  {% for id, name in template_meds.items() %}
+    <p><a href="/med/{{ id }}">{{ name }}</a></p>
+  {% endfor %}
+
+  <h2>Place an Order</h2>
+
+  <form method="post">
+    {{ template_form.hidden_tag() }}
+    <p>{{ template_form.med.label }} {{ template_form.med() }}</p>
+    <p>{{ template_form.quantity.label }} {{ template_form.quantity() }}</p>
+    <p>{{ template_form.submit() }}</p>
+  </form>
+{% endblock %}

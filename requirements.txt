@@ -2,3 +2,5 @@ numpy
 flask
 sqlalchemy
 matplotlib
+flask_wtf
+wtforms
