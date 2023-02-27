@@ -5,7 +5,7 @@ ingredients = {1: ["a", "b", "c"], 2: ["a", "b", "c"], 3: ["a", "b", "c"]}
 instructions = {1: {"Step 2": "a", "Step 5": "b", "Step 1": "c", "Step 4": "d", "Step 3": "e"},
                 2: {"Step 3": "a", "Step 4": "b", "Step 1": "c", "Step 2": "d"},
                 3: {"Step 3": "a", "Step 4": "b", "Step 1": "c", "Step 2": "d"}}
-comments = {1: ["Yummy!!", "Egg-cellent ;->"], 2: ["Toasty", "What a great recipe!"]}
+orders = {0: ("medication", "quantity")}
 
 def add_ingredients(recipe_id=None, text=None):
   if recipe_id and text:
