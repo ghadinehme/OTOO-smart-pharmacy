@@ -34,6 +34,7 @@ def index():
         order_num = len(orders.keys()) + 1
         orders[order_num] = (medications[form_data["med"]], int(form_data[
             "quantity"]))
+        print(orders)
         return redirect(url_for("order_success"))
     return render_template("index.html", template_meds=medications,
                            template_form=order_form)
