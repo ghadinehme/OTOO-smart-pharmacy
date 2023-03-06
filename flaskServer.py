@@ -5,7 +5,7 @@
 from flask import Flask, jsonify, request, render_template, redirect, url_for
 from helper import medications, descriptions, ingredients, instructions, orders
 from flask_wtf import FlaskForm
-from wtforms import SubmitField, SelectField, RadioField
+from wtforms import SubmitField, SelectField
 from wtforms.validators import DataRequired
 import json
 import numpy as np
@@ -20,9 +20,8 @@ class OrderForm(FlaskForm):
                                  (2, medications[2]),
                                  (3, medications[3])],
                       validators=[DataRequired()])
-    quantity = RadioField("Quantity",
-                          choices=[(5, "5"), (10, "10"),
-                                   (20, "20")],
+    quantity = SelectField("Quantity",
+                          choices=[(i, str(i)) for i in range(1, 21)],
                           validators=[DataRequired()])
     submit = SubmitField('Submit Order')
 

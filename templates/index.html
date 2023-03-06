@@ -1,13 +1,31 @@
 {% extends "base.html" %}
 {% block content %}
   <h1>Medication Info</h1>
-  <p>Welcome to Smart Pharmacy. Please fill out the form and place an order.
-  </p>
-  {% for id, name in template_meds.items() %}
-    <p><a href="/med/{{ id }}">{{ name }}</a></p>
-  {% endfor %}
+  <p>Welcome to Smart Pharmacy. Please fill out the form and place an order.</p>
+<!--  {% for id, name in template_meds.items() %}-->
+<!--    <p><a href="/med/{{ id }}">{{ name }}</a></p>-->
+<!--  {% endfor %}-->
 
-  <h2>Place an Order</h2>
+  <table>
+  <tr>
+    {% for id, name in template_meds.items() %}
+      <th>{{ name }}</th>
+    {% endfor %}
+  </tr>
+  <tr>
+    <td>Pain Relief</td>
+    <td>Pain Relief, Fever Reduction</td>
+    <td>Allergy Relief</td>
+  </tr>
+  <tr>
+    <td>2 pills every 6 hours while symptoms last</td>
+    <td>2 pills every 6 hours while symptoms last</td>
+    <td>2 pills maximum within 24 Hours while symptoms last</td>
+  </tr>
+</table>
+
+
+  <h1>Place an Order</h1>
 
   <form method="post">
     {{ template_form.hidden_tag() }}

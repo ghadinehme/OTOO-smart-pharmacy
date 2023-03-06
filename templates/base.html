@@ -1,12 +1,74 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Pharmacy</title>
+    <style>
+      body {
+        font-family: Calibri, sans-serif;
+        margin: 20;
+        padding: 20;
+        background-color: #222;
+        color: #f2f2f2;
+      }
+
+      header {
+        background-color: #333;
+        padding: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      header a {
+        text-decoration: none;
+        color: #f2f2f2;
+        font-size: 20px;
+        margin-right: 20px;
+      }
+
+      header a:hover {
+        color: #fff;
+      }
+
+      main {
+        padding: 20px;
+        background-color: #333;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      a {
+        color: #f2f2f2;
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: #fff;
+      }
+
+      table {
+        border-collapse: collapse;
+      }
+
+      th, td {
+        padding: 10px;
+        border: 1px solid black;
+      }
+    </style>
+  </head>
   <body>
-    <div>
-      <a href="/">Place Order</a>
-      |
-      <a href="/about">About</a>
-    </div>
-    {% block content %}
-    {% endblock %}
+    <header>
+      <a>Smart Pharmacy</a>
+      <nav>
+        <a href="/">Place Order</a>
+        <a href="/about">About</a>
+      </nav>
+    </header>
+    <main>
+      {% block content %}
+      {% endblock %}
+    </main>
   </body>
 </html>
