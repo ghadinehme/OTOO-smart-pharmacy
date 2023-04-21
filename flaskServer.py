@@ -1,3 +1,5 @@
+
+
 # Created to allow server storage of users and their pill orders
 # Additionally must store locations and pills available to dispense
 # Created Ben Randoing on 02/12/2023
@@ -10,6 +12,7 @@ from wtforms.validators import DataRequired
 import json
 import numpy as np
 import sqlalchemy
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'mysecret'
