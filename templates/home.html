@@ -10,17 +10,13 @@
 </style>
 <div class="container">
 	<section class="hero">
-		<h1>Thank You! Your Order is Dispensing</h1>
+		<h1>Smart Solutions for Your Health</h1>
 		<div class="cta">
+			<form method="post">
+			{{ template_form.hidden_tag() }}
+			<p><button class=".cta button">Shop Now</button></p>
+			</form>
 		</div>
 	</section>
 </div>
-{% endblock %}
-
-{% block script %}
-	<script>
-		setTimeout(function() {
-			window.location.href = "{{ url_for('home') }}";
-		}, 10000); // 10 seconds
-	</script>
 {% endblock %}
