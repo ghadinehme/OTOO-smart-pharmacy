@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+	body {
+			background-image: url('https://petapixel.com/assets/uploads/2014/01/40tips1.jpg');
+			background-size: 100%;
+			background-position: 0px 116px;
+			background-repeat: no-repeat;
+		}
+</style>
+<div class="container">
+	<section class="hero">
+		<h1>Smart Solutions for Your Health</h1>
+		<div class="cta">
+			<form method="post">
+			{{ template_form.hidden_tag() }}
+			<p><button class=".cta button">Shop Now</button></p>
+			</form>
+		</div>
+	</section>
+</div>
+{% endblock %}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Page Pop Up from Side</title>
+	<style>
+		body {
+			overflow-x: hidden; /* prevent horizontal scrollbar */
+		}
+		
+		/* Style for the button that triggers the pop up */
+		.pop-up-button {
+			background-color: #4CAF50;
+			color: white;
+			padding: 12px 20px;
+			border: none;
+			cursor: pointer;
+			position: fixed;
+			bottom: 20px;
+			right: 30px;
+			transition: all 0.3s;
+			z-index: 1;
+		}
+		
+		/* Style for the pop-up container */
+		.pop-up-container {
+			height: 100%;
+			width: 0;
+			position: fixed;
+			z-index: 1;
+			top: 0;
+			right: 0;
+			background-color: #f1f1f1;
+			overflow-x: hidden;
+			transition: all 0.3s;
+			padding-top: 60px;
+		}
+
+		/* Style for the close button */
+		.pop-up-container .close-button {
+			position: absolute;
+			top: 0;
+			right: 25px;
+			font-size: 36px;
+			margin-left: 50px;
+			cursor: pointer;
+		}
+		
+		/* Style for the pop-up content */
+		.pop-up-container .pop-up-content {
+			display: block;
+			text-align: center;
+			margin-top: 30px;
+		}
+		
+		/* Show the pop-up container when the button is clicked */
+		.pop-up-button:focus + .pop-up-container {
+			width: 100%;
+		}
+		
+		/* Hide the pop-up container when the close button is clicked */
+		.pop-up-container .close-button:hover {
+			color: red;
+		}
+		
+		/* Slide the pop-up container out of view when closed */
+		.pop-up-container {
+			width: 0;
+		}
+		
+		/* Set the width of the pop-up content */
+		.pop-up-container .pop-up-content {
+			width: 100%;
+		}
+	</style>
+</head>
+<body>
+
+	<!-- Button to trigger the pop-up -->
+	<button class="pop-up-button">Open Pop Up</button>
+
+	<!-- The pop-up container -->
+	<div class="pop-up-container">
+		<span class="close-button">&times;</span>
+		<div class="pop-up-content">
+			<h1>Pop Up Content</h1>
+			<p>This is the content of the pop up. You can add any HTML elements you want here.</p>
+		</div>
+	</div>
+
+</body>
+</html>
