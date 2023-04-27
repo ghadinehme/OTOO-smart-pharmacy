@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+	.product-grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		grid-gap: 20px;
+	}
+
+	.product {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		background-color: #f2f2f2;
+		border-radius: 10px;
+		padding: 40px;
+		text-align: center;
+		transition: transform 0.2s;
+	}
+
+	.product:hover {
+		transform: translateY(-10px);
+	}
+
+	.product img {
+		width: 100%;
+		height: 200px;
+		object-fit: cover;
+		border-radius: 10px;
+	}
+
+	.product h3 {
+		margin-top: 10px;
+		margin-bottom: 5px;
+		font-size: 18px;
+		font-weight: bold;
+	}
+
+	.product p {
+		margin: 0;
+		font-size: 14px;
+		color: #666;
+	}
+
+	.product a {
+		display: block;
+		margin-top: 10px;
+		padding: 10px;
+		background-color: #333;
+		color: #fff;
+		border-radius: 5px;
+		text-decoration: none;
+		font-size: 14px;
+		font-weight: bold;
+		transition: background-color 0.2s;
+	}
+
+	.product a:hover {
+		background-color: #555;
+		color: #fff;
+	}
+
+</style>
+<body>
+	<div class="product-grid">
+		{% for num, image_filename in template_images.items() %}
+		<div class="product">
+			<img src={{ image_filename }} alt={{ image_filename }}>
+			<h3>{{ template_function[num] }}</h3>
+			<p> {{ template_perdose[num] }} Pills Per Dose</p>
+			<form method="post">
+			{{ template_form.hidden_tag() }}
+			<p><button class=".cta button">Order</button></p>
+			</form>
+		</div>
+		{% endfor %}
+	</div>
+</body>
+{% endblock %}
