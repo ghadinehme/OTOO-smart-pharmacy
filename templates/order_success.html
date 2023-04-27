@@ -1,10 +1,26 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Order Received</h1>
-  <p>
-    Congrats! Your order was received and will begin dispensing
-  </p>
-  <p>
-    Thank you for visiting!!!
-  </p>
+<style>
+	body {
+			background-image: url('https://petapixel.com/assets/uploads/2014/01/40tips1.jpg');
+			background-size: 100%;
+			background-position: 0px 116px;
+			background-repeat: no-repeat;
+		}
+</style>
+<div class="container">
+	<section class="hero">
+		<h1>Thank You! Your Order is Dispensing</h1>
+		<div class="cta">
+		</div>
+	</section>
+</div>
+{% endblock %}
+
+{% block script %}
+	<script>
+		setTimeout(function() {
+			window.location.href = "{{ url_for('home') }}";
+		}, 10000); // 10 seconds
+	</script>
 {% endblock %}
