@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block content %}
+<title>Product Page - Product 1</title>
+<style>
+	.product {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		background-color: #f2f2f2;
+		border-radius: 10px;
+		padding: 20px;
+		text-align: center;
+	}
+
+	.product img {
+		width: 100%;
+		max-width: 400px;
+		height: auto;
+		object-fit: cover;
+		border-radius: 10px;
+	}
+
+	.product h3 {
+		margin-top: 10px;
+		margin-bottom: 5px;
+		font-size: 24px;
+		font-weight: bold;
+	}
+
+	.product p {
+		margin: 0;
+		font-size: 16px;
+		color: #666;
+		margin-bottom: 20px;
+	}
+
+	.quantity {
+		display: flex;
+		align-items: center;
+		margin-bottom: 20px;
+	}
+
+	.quantity label {
+		font-size: 16px;
+		margin-right: 10px;
+	}
+
+	.quantity input {
+		width: 50px;
+		height: 30px;
+		text-align: center;
+		font-size: 16px;
+		border-radius: 5px;
+		border: 1px solid #ccc;
+	}
+
+	.order-btn {
+		display: block;
+		margin-top: 20px;
+		padding: 10px;
+		background-color: #333;
+		color: #fff;
+		border-radius: 5px;
+		text-decoration: none;
+		font-size: 16px;
+		font-weight: bold;
+		transition: background-color 0.2s;
+	}
+
+	.order-btn:hover {
+		background-color: #555;
+		color: #fff;
+	}
+</style>
+<body>
+	<div class="product">
+		<img src={{ template_image }} alt="Product 1">
+		<h3>{{ template_function }}</h3>
+		<p>{{ template_perdose }} Pills Per Dose</p>
+		<div class="quantity">
+			<label for="quantity">Quantity:</label>
+			<input type="number" id="quantity" name="quantity" min="2"
+				   value="2" step={{ template_perdose }} max="10">
+		</div>
+		<form method="post">
+		{{ template_form.hidden_tag() }}
+		<p><button class=".cta button">Submit Order</button></p>
+		</form>
+	</div>
+</body>
+{% endblock %}
