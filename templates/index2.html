@@ -64,15 +64,18 @@
 </style>
 <body>
 	<div class="product-grid">
-		{% for num, image_filename in template_images.items() %}
+		{% for num, med in template_meds.items() %}
 		<div class="product">
-			<img src={{ image_filename }} alt={{ image_filename }}>
-			<h3>{{ template_function[num] }}</h3>
-			<p> {{ template_perdose[num] }} Pills Per Dose</p>
-			<form method="post">
-			{{ template_form.hidden_tag() }}
-			<p><button class=".cta button">Order</button></p>
-			</form>
+			<img src={{ url_for('static', filename=med.image_filename) }} alt={{
+			image_filename }}>
+			<h3>{{ med.pill_function }}</h3>
+			<p> {{ med.pill_per_dose }} Pills Per Dose</p>
+			<div class="cta">
+				<form method="post">
+				{{ template_form.hidden_tag() }}
+				<p><button class=".cta button">Order</button></p>
+				</form>
+			</div>
 		</div>
 		{% endfor %}
 	</div>

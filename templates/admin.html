@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block content %}
+<head>
+	<title>Password Input Page</title>
+	<style>
+		body {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			height: 100vh;
+			margin: 0;
+			padding: 0;
+			background-color: #f1f1f1;
+		}
+
+		form {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			background-color: #fff;
+			padding: 40px;
+			border-radius: 10px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+		}
+
+		input[type="password"] {
+			display: block;
+			width: 100%;
+			height: 50px;
+			font-size: 24px;
+			margin-bottom: 20px;
+			padding: 10px;
+			border-radius: 5px;
+			border: 2px solid #ccc;
+			box-sizing: border-box;
+			background-color: #f9f9f9;
+			color: #666;
+			outline: none;
+			text-align: center;
+		}
+
+		input[type="submit"] {
+			display: block;
+			width: 100%;
+			height: 50px;
+			font-size: 24px;
+			background-color: #4CAF50;
+			color: #fff;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			transition: background-color 0.3s ease;
+		}
+
+		input[type="submit"]:hover {
+			background-color: #3e8e41;
+		}
+	</style>
+</head>
+<body>
+	<form>
+		<label for="password">Enter Password:</label>
+		<input type="password" id="password" name="password" placeholder="Password" required>
+		<input type="submit" value="Submit">
+	</form>
+</body>
+
+{% endblock %}

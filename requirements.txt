@@ -4,3 +4,4 @@ sqlalchemy
 matplotlib
 flask_wtf
 wtforms
+flask_sqlalchemy
