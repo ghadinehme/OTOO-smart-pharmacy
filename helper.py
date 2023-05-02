@@ -1,32 +1,62 @@
-medications = {1: "Tylenol", 2: "Ibuprofen", 3: "Aleve"}
-types = {1: "Breakfast", 2: "Breakfast"}
-descriptions = {1: "Pain Relief", 2: "Pain Relief", 3: "Allergy Relief"}
-ingredients = {1: ["a", "b", "c"], 2: ["a", "b", "c"], 3: ["a", "b", "c"]}
-instructions = {1: {"Step 2": "a", "Step 5": "b", "Step 1": "c", "Step 4": "d", "Step 3": "e"},
-                2: {"Step 3": "a", "Step 4": "b", "Step 1": "c", "Step 2": "d"},
-                3: {"Step 3": "a", "Step 4": "b", "Step 1": "c", "Step 2": "d"}}
-orders = {}
-image_files = {1: "tylenol_1.png", 2: "advil.png", 3: "aleve_1.png",
-               4: "zantac_1.png", 5: "claritin.png", 6: "zyrtek_1.png",
-               7: "dayquil.png", 8: "peptobismol.png"}
-pill_per_dose = {1: 2, 2: 3, 3: 2, 4: 2, 5: 2, 6: 2, 7: 2, 8: 2}
-pill_function = {1: "Pain Relief", 2: "Pain Relief", 3: "Pain Relief",
-                 4: "Antacid",
-                 5: "Allergy Relief", 6: "Allergy Relief",
-                 7: "Cold and Flu",
-                 8: "Upset Stomach Relief"}
+from flaskServer import db, Pharmacy, Medication, app
 
+pharmacy = Pharmacy(id = 1, location = 'loft')
 
-def add_ingredients(recipe_id=None, text=None):
-  if recipe_id and text:
-    text_list = text.split("\n")
-    ingredients[recipe_id] = text_list
+tylenol = Medication(name = 'tylenol', amt_left = 400, description = 'Tylenol Description',
+                     pill_per_dose = 2, image_filename = 'tylenol_1.png',
+                     pill_function = 'Pain Relief', location_id = pharmacy.id)
 
-def add_instructions(recipe_id=None, text=None):
-  if recipe_id and text:
-    text_list = text.split("\n")
-    instructions_dict = {}
-    for i, instruction in enumerate(text_list):
-      instructions_dict["Step {}".format(i+1)] = instruction
+advil = Medication(name = 'advil', amt_left = 400, description = 'Advil '
+                     'Description',
+                     pill_per_dose = 2, image_filename = 'advil.png',
+                     pill_function = 'Pain Relief', location_id = pharmacy.id)
 
-    instructions[recipe_id] = instructions_dict
+aleve = Medication(name = 'aleve', amt_left = 400, description = 'Aleve '
+                     'Description',
+                     pill_per_dose = 2, image_filename = 'aleve_1.png',
+                     pill_function = 'Pain Relief', location_id = pharmacy.id)
+
+zantac = Medication(name = 'zantac', amt_left = 400, description = 'Zantac '
+                     'Description',
+                     pill_per_dose = 2, image_filename = 'zantac_1.png',
+                     pill_function = 'Antacid', location_id = pharmacy.id)
+
+claritin = Medication(name = 'claritin', amt_left = 400, description =
+                     'Claritin Description',
+                     pill_per_dose = 2, image_filename = 'claritin.png',
+                     pill_function = 'Allergy Relief', location_id =
+                      pharmacy.id)
+
+zyrtec = Medication(name = 'zyrtec', amt_left = 400, description = 'Zyrtec '
+                     'Description',
+                     pill_per_dose = 2, image_filename = 'zyrtek_1.png',
+                     pill_function = 'Allergy Relief', location_id =
+                    pharmacy.id)
+
+dayquil = Medication(name = 'dayquil', amt_left = 400, description = 'DayQuil '
+                     'Description',
+                     pill_per_dose = 2, image_filename = 'dayquil.png',
+                     pill_function = 'Cold and Flu', location_id =
+                     pharmacy.id)
+
+peptobismal = Medication(name = 'peptobismal', amt_left = 400, description =
+                     'Peptobismal Description',
+                     pill_per_dose = 2, image_filename = 'peptobismol.png',
+                     pill_function = 'Stomach', location_id = pharmacy.id)
+
+with app.app_context():
+    db.session.add(pharmacy)
+
+    db.session.add(tylenol)
+    db.session.add(advil)
+    db.session.add(aleve)
+    db.session.add(zantac)
+    db.session.add(claritin)
+    db.session.add(zyrtec)
+    db.session.add(dayquil)
+    db.session.add(peptobismal)
+
+    try:
+        db.session.commit()
+    except:
+        db.session.rollback()

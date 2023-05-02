@@ -75,18 +75,21 @@
 </style>
 <body>
 	<div class="product">
-		<img src={{ template_image }} alt="Product 1">
-		<h3>{{ template_function }}</h3>
-		<p>{{ template_perdose }} Pills Per Dose</p>
+		<img src={{ url_for('static', filename=template_med.image_filename) }}
+		alt="Product 1">
+		<h3>{{ template_med.pill_function }}</h3>
+		<p>{{ template_med.pill_per_dose }} Pills Per Dose</p>
 		<div class="quantity">
 			<label for="quantity">Quantity:</label>
 			<input type="number" id="quantity" name="quantity" min="2"
-				   value="2" step={{ template_perdose }} max="10">
+				   value="2" step={{ template_med.pill_per_dose }} max="10">
 		</div>
-		<form method="post">
-		{{ template_form.hidden_tag() }}
-		<p><button class=".cta button">Submit Order</button></p>
-		</form>
+		<div class="cta">
+			<form method="post">
+			{{ template_form.hidden_tag() }}
+			<p><button class=".cta button">Submit Order</button></p>
+			</form>
+		</div>
 	</div>
 </body>
 {% endblock %}

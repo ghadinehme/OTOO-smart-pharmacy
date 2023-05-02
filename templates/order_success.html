@@ -2,9 +2,9 @@
 {% block content %}
 <style>
 	body {
-			background-image: url('https://petapixel.com/assets/uploads/2014/01/40tips1.jpg');
-			background-size: 100%;
-			background-position: 0px 116px;
+			background-image: url('https://t3.ftcdn.net/jpg/00/87/69/38/240_F_87693883_lA6YcoWtCHwDesWDPXhzk0ho7vPyI8dt.jpg');
+			background-size: 80%;
+			background-position: 180px 600px;
 			background-repeat: no-repeat;
 		}
 </style>
@@ -15,12 +15,13 @@
 		</div>
 	</section>
 </div>
+<script>
+	setTimeout(function() {
+		window.location.href = "{{ url_for('home') }}";
+	}, 10000); // 10 seconds
+</script>
 {% endblock %}
 
-{% block script %}
-	<script>
-		setTimeout(function() {
-			window.location.href = "{{ url_for('home') }}";
-		}, 10000); // 10 seconds
-	</script>
-{% endblock %}
+
+
+
