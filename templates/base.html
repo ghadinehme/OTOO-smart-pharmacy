@@ -31,7 +31,7 @@
 		}
 
 		.nav {
-			display: flex;
+			display: inline-block;
 			align-items: center;
 		}
 
@@ -80,7 +80,7 @@
 			background-color: #FF0000;
 			color: #FFFFFF;
 			padding: 10px 20px;
-			border: none;
+			border: 2px solid #FF0000;
 			border-radius: 30px;
 			font-size: 24px;
 			font-weight: bold;
@@ -115,12 +115,9 @@
 </head>
 	<div class="container">
 		<header class="header">
+			{% block header %}
 			<h1 class="logo">Smart Pharmacy</h1>
-			<nav class="nav">
-				<div class="cta">
-					<p><button class=".cta button">Admin</button></p>
-				</div>
-			</nav>
+			{% endblock %}
 		</header>
 	</div>
 <body>
