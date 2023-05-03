@@ -1,4 +1,17 @@
 {% extends "base.html" %}
+{% block header %}
+{{ super() }}
+<nav class="nav">
+	<div class="cta">
+		<form name="admin" method="post">
+			{{ template_form.hidden_tag() }}
+			<p><button class=".cta button">Admin</button></p>
+			<input type="hidden" name="formName" value="admin">
+		</form>
+	</div>
+</nav>
+{% endblock %}
+
 {% block content %}
 <style>
 	body {
@@ -14,9 +27,10 @@
 	<section class="hero">
 		<h1>Sustainable Solutions for Your Health</h1>
 		<div class="cta">
-			<form method="post">
+			<form name="next" method="post">
 				{{ template_form.hidden_tag() }}
-				<p><button class=".cta button">Shop Now</button></p>
+				<p><button class="cta button">Shop Now</button></p>
+				<input type="hidden" name="formName" value="next">
 			</form>
 		</div>
 	</section>
