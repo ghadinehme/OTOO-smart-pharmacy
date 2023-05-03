@@ -74,13 +74,25 @@ class AdminForm(FlaskForm):
 def home():
     next_form = NextForm()
     admin_form = AdminForm()
-    if next_form.validate_on_submit():
-        return redirect(url_for("index"))
-    if admin_form.validate_on_submit():
-        return redirect(url_for("admin"))
+    if request.method == "POST":
+        if request.form['formName'] == "next":
+            if next_form.validate_on_submit():
+                return redirect(url_for("index"))
+        if request.form['formName'] == "admin":
+            if admin_form.validate_on_submit():
+                return redirect(url_for("admin"))
 
     return render_template("home.html", template_form=next_form, admin_form=admin_form)
-    
+
+@app.route("/ailment", methods=["GET", "POST"])
+def ailment():
+    next_form = NextForm()
+    admin_form = AdminForm()
+    if next_form.validate_on_submit():
+        return redirect(url_for("index"))
+
+    return render_template("ailment.html", template_form=next_form,
+                           admin_form=admin_form)
     
 @app.route("/place_order", methods=["GET", "POST"])
 def index():
@@ -91,7 +103,8 @@ def index():
 
     pill_next_form = PillNextForm()
     if pill_next_form.validate_on_submit():
-        return redirect(url_for("product"))
+        med_name = request.form['medName']
+        return redirect(url_for("product", medName=med_name))
 
         #Run slider left
         # slider.slider_turn(form_data["med"], 0)
@@ -106,11 +119,11 @@ def index():
     return render_template("index2.html", template_meds=medications,
                            template_form=pill_next_form)
 
-@app.route("/product", methods=["GET", "POST"])
-def product():
+@app.route("/product/<medName>", methods=["GET", "POST"])
+def product(medName):
     keys = [1, 2, 3, 4, 5, 6, 7, 8]
     # Grab from DB
-    medication = Medication.query.get('tylenol')
+    medication = Medication.query.get(medName)
 
     order_form = OrderForm()
     if order_form.validate_on_submit():
