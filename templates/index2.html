@@ -74,6 +74,7 @@
 				<form method="post">
 				{{ template_form.hidden_tag() }}
 				<p><button class=".cta button">Order</button></p>
+				<input type="hidden" name="medName" value={{ med.name }}>
 				</form>
 			</div>
 		</div>
