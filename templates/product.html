@@ -18,7 +18,7 @@
 		max-width: 400px;
 		height: auto;
 		object-fit: cover;
-		border-radius: 10px;
+		border-radius: 100px;
 	}
 
 	.product h3 {
@@ -55,6 +55,26 @@
 		border: 1px solid #ccc;
 	}
 
+	.quantity button {
+		background-color: #FF0000;
+		color: #FFFFFF;
+		padding: 10px 20px;
+		border: 2px solid #FF0000;
+		border-radius: 30px;
+		font-size: 24px;
+		font-weight: bold;
+		margin: 0 10px;
+		cursor: pointer;
+		font-family: "Open Sans", sans-serif;
+	}
+
+	.quantity button:hover {
+		background-color: #FFFFFF;
+		color: #FF0000;
+		border: 2px solid #FF0000;
+	}
+
+
 	.order-btn {
 		display: block;
 		margin-top: 20px;
@@ -80,9 +100,10 @@
 		<h3>{{ template_med.pill_function }}</h3>
 		<p>{{ template_med.pill_per_dose }} Pills Per Dose</p>
 		<div class="quantity">
-			<label for="quantity">Quantity:</label>
+			<button class="decrement">-</button>
 			<input type="number" id="quantity" name="quantity" min="2"
 				   value="2" step={{ template_med.pill_per_dose }} max="10">
+			<button class="increment">+</button>
 		</div>
 		<div class="cta">
 			<form method="post">
@@ -92,4 +113,25 @@
 		</div>
 	</div>
 </body>
+<script>
+const quantityInput = document.getElementById('quantity');
+const incrementBtn = document.querySelector('.increment');
+const decrementBtn = document.querySelector('.decrement');
+
+incrementBtn.addEventListener('click', function() {
+  const currentValue = Number(quantityInput.value);
+  const maxValue = Number(quantityInput.getAttribute('max'));
+  if (currentValue < maxValue) {
+    quantityInput.value = currentValue + Number(quantityInput.getAttribute('step'));
+  }
+});
+
+decrementBtn.addEventListener('click', function() {
+  const currentValue = Number(quantityInput.value);
+  const minValue = Number(quantityInput.getAttribute('min'));
+  if (currentValue > minValue) {
+    quantityInput.value = currentValue - Number(quantityInput.getAttribute('step'));
+  }
+});
+</script>
 {% endblock %}

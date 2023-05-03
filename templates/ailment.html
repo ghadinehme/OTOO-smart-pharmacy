@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+	body {
+			background-image: url('https://t3.ftcdn.net/jpg/00/87/69/38/240_F_87693883_lA6YcoWtCHwDesWDPXhzk0ho7vPyI8dt.jpg');
+			background-size: 80%;
+			background-position: 180px 600px;
+			background-repeat: no-repeat;
+		}
+</style>
+
+
+<div class="container">
+	<section class="hero">
+		<div class="cta">
+			<form method="post">
+				{{ template_form.hidden_tag() }}
+				<p><button class=".cta button">Shop Now</button></p>
+			</form>
+		</div>
+	</section>
+</div>
+{% endblock %}
