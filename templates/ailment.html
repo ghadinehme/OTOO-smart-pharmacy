@@ -1,23 +1,198 @@
 {% extends "base.html" %}
 {% block content %}
+<title>Ailment Page</title>
 <style>
+
+	.product-grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		grid-gap: 20px;
+	}
+
+	.product {
+		display: inline-block;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		background-color: #f2f2f2;
+		border-radius: 100px;
+		padding: 20px;
+		text-align: center;
+		transition: transform 0.2s;
+	}
+
+	.product:hover {
+		transform: translateY(-10px);
+	}
+
+	.product img {
+		width: 100%;
+		max-width: 400px;
+		height: auto;
+		object-fit: cover;
+		border-radius: 100px;
+	}
+
+	.product h3 {
+		margin-top: 10px;
+		margin-bottom: 5px;
+		font-size: 24px;
+		font-weight: bold;
+	}
+
+	.product p {
+		margin: 0;
+		font-size: 16px;
+		color: #666;
+		margin-bottom: 20px;
+	}
+
+	.quantity {
+		display: flex;
+		align-items: center;
+		margin-bottom: 20px;
+	}
+
+	.quantity label {
+		font-size: 16px;
+		margin-right: 10px;
+	}
+
+	.quantity input {
+		width: 50px;
+		height: 30px;
+		text-align: center;
+		font-size: 16px;
+		border-radius: 5px;
+		border: 1px solid #ccc;
+	}
+
+	.quantity button {
+		background-color: #FF0000;
+		color: #FFFFFF;
+		padding: 10px 20px;
+		border: 2px solid #FF0000;
+		border-radius: 30px;
+		font-size: 24px;
+		font-weight: bold;
+		margin: 0 10px;
+		cursor: pointer;
+		font-family: "Open Sans", sans-serif;
+	}
+
+	.quantity button:hover {
+		background-color: #FFFFFF;
+		color: #FF0000;
+		border: 2px solid #FF0000;
+	}
+
+
 	body {
-			background-image: url('https://t3.ftcdn.net/jpg/00/87/69/38/240_F_87693883_lA6YcoWtCHwDesWDPXhzk0ho7vPyI8dt.jpg');
-			background-size: 80%;
-			background-position: 180px 600px;
-			background-repeat: no-repeat;
+	  /*overflow-x: hidden; !* creates horizontal scrollbar *!*/
+	  overflow-y: hidden; /* hides vertical scrollbar */
+	  white-space: nowrap; /* prevents container from wrapping to next line */
+	}
+
+
+	.container {
+		overflow-x: auto;
+		max-width: 1200px;
+		min-width: 500px;
+		margin: 0 auto;
+		padding: 20px;
+		position: inline-block;
+	}
+	.scroll {
+		display: inline-block;
+		/*overflow-x: auto;*/
+	}
+
+	.ailment {
+		display: flex;
+		width: 100%; /* sets container width to full width of parent */
+		white-space: nowrap; /* prevents container from wrapping to next line */
+		width: 135px;
+		height: 150px;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		/*background-color: #f2f2f2;*/
+		border-radius: 100px;
+		padding: 100px;
+		text-align: center;
+		transition: transform 0.2s;
+	}
+
+	.ailment:hover {
+		transform: translateY(-10px);
+	}
+
+	.cta button {
+			background-color: #FF0000;
+			color: #FFFFFF;
+			padding: 10px 20px;
+			border: 2px solid #FF0000;
+			border-radius: 100px;
+			font-size: 24px;
+			font-weight: bold;
+			margin: 0 10px;
+			cursor: pointer;
+			font-family: "Open Sans", sans-serif;
+			/*height: 100px;*/
 		}
+
+		.cta button:hover {
+			background-color: #FFFFFF;
+			color: #FF0000;
+			border: 2px solid #FF0000;
+		}
+
+
 </style>
-
-
-<div class="container">
-	<section class="hero">
-		<div class="cta">
-			<form method="post">
+<body>
+	<div class="hero" style="height: 150px">
+		<h1>What Type of Medication?</h1>
+	</div>
+	<div class="container" style="max-width: 1900px;">
+		<div class="scroll">
+			{% for ailmt in template_ailmt %}
+			<div class="cta">
+				<form method="post">
 				{{ template_form.hidden_tag() }}
-				<p><button class=".cta button">Shop Now</button></p>
-			</form>
+				<p>
+					<button>
+						<div class="ailment">
+							<h1>{{ ailmt }}</h1>
+						</div>
+					</button>
+				</p>
+				<input type="hidden" name="ailment" value="{{ ailmt }}">
+				</form>
+			</div>
+			{% endfor %}
 		</div>
-	</section>
-</div>
+	</div>
+</body>
+
+<script>
+const quantityInput = document.getElementById('quantity');
+const incrementBtn = document.querySelector('.increment');
+const decrementBtn = document.querySelector('.decrement');
+
+incrementBtn.addEventListener('click', function() {
+  const currentValue = Number(quantityInput.value);
+  const maxValue = Number(quantityInput.getAttribute('max'));
+  if (currentValue < maxValue) {
+    quantityInput.value = currentValue + Number(quantityInput.getAttribute('step'));
+  }
+});
+
+decrementBtn.addEventListener('click', function() {
+  const currentValue = Number(quantityInput.value);
+  const minValue = Number(quantityInput.getAttribute('min'));
+  if (currentValue > minValue) {
+    quantityInput.value = currentValue - Number(quantityInput.getAttribute('step'));
+  }
+});
+</script>
 {% endblock %}

@@ -1,0 +1,184 @@
+{% extends "base.html" %}
+{% block content %}
+<title>Product Page - Product 1</title>
+<style>
+
+	.product {
+		display: inline-block;
+		width: 400px;
+		height: 700px;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		/*background-color: #f2f2f2;*/
+		border-radius: 10px;
+		padding: 20px;
+		text-align: center;
+		overflow-y: hidden;
+	}
+
+	.product img {
+		width: 100%;
+		max-width: 400px;
+		height: auto;
+		object-fit: cover;
+		border-radius: 100px;
+		transition: transform 0.2s;
+	}
+
+	.product img:hover {
+		transform: translateY(-10px);
+	}
+
+	.product h3 {
+		margin-top: 10px;
+		margin-bottom: 5px;
+		font-size: 24px;
+		font-weight: bold;
+	}
+
+	.product p {
+		margin: 0;
+		font-size: 16px;
+		color: #666;
+		margin-bottom: 20px;
+	}
+
+	.quantity {
+		display: inline-block;
+		align-items: center;
+		margin-bottom: 20px;
+	}
+
+	.quantity label {
+		font-size: 16px;
+		margin-right: 10px;
+	}
+
+	.quantity input {
+		width: 50px;
+		height: 30px;
+		text-align: center;
+		font-size: 16px;
+		border-radius: 5px;
+		border: 1px solid #ccc;
+	}
+
+	.quantity button {
+		background-color: #FF0000;
+		color: #FFFFFF;
+		padding: 10px 20px;
+		border: 2px solid #FF0000;
+		border-radius: 30px;
+		font-size: 24px;
+		font-weight: bold;
+		margin: 0 10px;
+		cursor: pointer;
+		font-family: "Open Sans", sans-serif;
+	}
+
+	.quantity button:hover {
+		background-color: #FFFFFF;
+		color: #FF0000;
+		border: 2px solid #FF0000;
+	}
+
+
+</style>
+<body>
+	<div class="hero" style="height: 150px">
+		<h1>{{ template_title }}</h1>
+	</div>
+	<div class="container" style="max-width: 1900px;">
+		{% for num, med in template_meds.items() %}
+		<div class="product" id="{{ med.name }}">
+			<img src={{ url_for('static', filename=med.image_filename) }}
+				alt="Product 1">
+	<!--		<p>{{ med.pill_per_dose }} Pills Per Dose</p>-->
+			<div class="quantity">
+				<button class="decrement" id="dec">-</button>
+				<input type="number" id="quantity" name="quantity" min="2"
+					   value="2" step={{ med.pill_per_dose }} max="10">
+				<button class="increment" id="inc">+</button>
+			</div>
+			<div class="cta">
+				<form method="post">
+				{{ template_form.hidden_tag() }}
+					<p>
+						<button>
+							<div>
+								<h1>Submit Order</h1>
+							</div>
+						</button>
+					</p>
+				</form>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+	<div id="overlay">
+	</div>
+</body>
+<script>
+let quantityInputs = document.querySelectorAll('.quantity input');
+let submitInputs = document.querySelectorAll('form');
+console.log(quantityInputs);
+for (let i = 0; i < quantityInputs.length; i++) {
+	const quantityInput = quantityInputs[i];
+	const incrementBtn = quantityInput.nextElementSibling;
+	const decrementBtn = quantityInput.previousElementSibling;
+	const submitInput = submitInputs[i];
+	submitInput.style.display = "none";
+
+
+	incrementBtn.addEventListener('click', function () {
+		const currentValue = Number(quantityInput.value);
+		const maxValue = Number(quantityInput.getAttribute('max'));
+		if (currentValue < maxValue) {
+			quantityInput.value = currentValue + Number(quantityInput.getAttribute('step'));
+		}
+	});
+
+	decrementBtn.addEventListener('click', function () {
+		const currentValue = Number(quantityInput.value);
+		const minValue = Number(quantityInput.getAttribute('min'));
+		if (currentValue > minValue) {
+			quantityInput.value = currentValue - Number(quantityInput.getAttribute('step'));
+		}
+	});
+
+	quantityInput.style.display = "none";
+	incrementBtn.style.display = "none";
+	decrementBtn.style.display = "none";
+
+
+	const productDiv = quantityInput.closest('.product');
+	productDiv.addEventListener("click", function () {
+		quantityInput.style.display = "inline-block";
+		incrementBtn.style.display = "inline-block";
+		decrementBtn.style.display = "inline-block";
+		submitInput.style.display = "inline-block";
+		for (let j = 0; j < quantityInputs.length; j++) {
+			if (quantityInputs[j] != quantityInputs[i]) {
+				let quantityInputLocal = quantityInputs[j];
+				let incrementBtnLocal = quantityInputLocal.nextElementSibling;
+				let decrementBtnLocal = quantityInputLocal.previousElementSibling;
+
+
+				quantityInputLocal.style.display = "none";
+				incrementBtnLocal.style.display = "none";
+				decrementBtnLocal.style.display = "none";
+				submitInput.style.display = "none-block";
+			}
+		}
+		for (let k = 0; k < submitInputs.length; k++) {
+			if (submitInputs[k] != submitInputs[i]) {
+				let submitButtonLocal = submitInputs[k];
+
+				submitButtonLocal.style.display = "none";
+			}
+		}
+	});
+}
+</script>
+{% endblock %}

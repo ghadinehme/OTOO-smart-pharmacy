@@ -1,15 +1,17 @@
 {% extends "base.html" %}
 {% block header %}
 {{ super() }}
-<nav class="nav">
-	<div class="cta">
-		<form name="admin" method="post">
-			{{ template_form.hidden_tag() }}
-			<p><button class=".cta button">Admin</button></p>
-			<input type="hidden" name="formName" value="admin">
-		</form>
-	</div>
-</nav>
+<div style="text-align: right;">
+	<nav class="nav" >
+		<div class="cta" >
+			<form name="admin" method="post" >
+				{{ template_form.hidden_tag() }}
+				<p><button class=".cta button">Admin</button></p>
+				<input type="hidden" name="formName" value="admin">
+			</form>
+		</div>
+	</nav>
+</div>
 {% endblock %}
 
 {% block content %}
