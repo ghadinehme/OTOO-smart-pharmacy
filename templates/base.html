@@ -7,13 +7,15 @@
 			margin: 0;
 			padding: 0;
 			background-color: #FFFFFF;
-			font-family: "Segoe UI", sans-serif;
+			font-family: "Open Sans", sans-serif;
 		}
 
 		.container {
 			max-width: 1200px;
+			min-width: 500px;
 			margin: 0 auto;
 			padding: 20px;
+			position: inline-block;
 		}
 
 		.header {
@@ -21,7 +23,8 @@
 			align-items: center;
 			justify-content: space-between;
 			padding: 10px 0;
-			border-bottom: 2px solid #FF0000;
+			border-bottom: 5px solid #FF0000;
+			z-index: 999; /* sets the header element's z-index to a high value to ensure it appears above other elements */
 		}
 
 		.logo {
@@ -70,10 +73,11 @@
 		}
 
 		.cta {
-			display: flex;
+			display: inline-block;
 			align-items: center;
 			justify-content: center;
-			margin-top: 20px;
+			margin-top: 0px;
+			/*overflow-x: auto;*/
 		}
 
 		.cta button {
@@ -81,7 +85,7 @@
 			color: #FFFFFF;
 			padding: 10px 20px;
 			border: 2px solid #FF0000;
-			border-radius: 30px;
+			border-radius: 90px;
 			font-size: 24px;
 			font-weight: bold;
 			margin: 0 10px;

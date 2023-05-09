@@ -24,14 +24,13 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///myDB.db' #path to database an
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False #to supress warning
 db = SQLAlchemy(app) #database instance
 
-#Declare Database
+#Declare Database Types that are Instantiated in helper.py
 
 class Pharmacy(db.Model):
     id = db.Column(db.Integer, unique=True, primary_key=True)
     location = db.Column(db.String(80), index=True, unique=True)
     meds = db.relationship('Medication', backref='pharmacy',
                                   lazy='dynamic')
-
 
 class Medication(db.Model):
     name = db.Column(db.String(80), index=True, unique=True,
@@ -44,28 +43,20 @@ class Medication(db.Model):
     location_id = db.Column(db.Integer,
                         db.ForeignKey('pharmacy.id'))  # foreign key column
 
-# use when settting up machine to createe database
+# # Use when setting up machine to create database
 # with app.app_context():
 #     # Use SQLAlchemy functionality that requires the application context
 #     db.create_all()
 
 
 class OrderForm(FlaskForm):
-    # med = SelectField("Medication", coerce=int,
-    #                   choices = [(1, medications[1]),
-    #                              (2, medications[2]),
-    #                              (3, medications[3])],
-    #                   validators=[DataRequired()])
-    # quantity = SelectField("Quantity",
-    #                       choices=[(i, str(i)) for i in range(1, 21) if i % 2 == 0],
-    #                       validators=[DataRequired()])
     submit = SubmitField('Submit Order')
     
 class NextForm(FlaskForm):
     submit = SubmitField('Shop Now')
 
-class PillNextForm(FlaskForm):
-    submit = SubmitField('Order Now')
+class AilmtForm(FlaskForm):
+    submit = SubmitField('Ailment')
 
 class AdminForm(FlaskForm):
     submit = SubmitField('Admin')
@@ -77,7 +68,7 @@ def home():
     if request.method == "POST":
         if request.form['formName'] == "next":
             if next_form.validate_on_submit():
-                return redirect(url_for("index"))
+                return redirect(url_for("ailment"))
         if request.form['formName'] == "admin":
             if admin_form.validate_on_submit():
                 return redirect(url_for("admin"))
@@ -86,25 +77,31 @@ def home():
 
 @app.route("/ailment", methods=["GET", "POST"])
 def ailment():
-    next_form = NextForm()
-    admin_form = AdminForm()
-    if next_form.validate_on_submit():
-        return redirect(url_for("index"))
-
-    return render_template("ailment.html", template_form=next_form,
-                           admin_form=admin_form)
-    
-@app.route("/place_order", methods=["GET", "POST"])
-def index():
-    keys = [1, 2, 3, 4, 5, 6, 7, 8]
     meds = Pharmacy.query.get(1).meds.all()
-    # Grab from DB
-    medications = { key:value for (key, value) in zip(keys, meds) }
+    ailmt_form = AilmtForm()
+    if ailmt_form.validate_on_submit():
+        ailmentIn = request.form['ailment']
+        print(ailmentIn)
+        return redirect(url_for("index", ailment=ailmentIn))
 
-    pill_next_form = PillNextForm()
-    if pill_next_form.validate_on_submit():
-        med_name = request.form['medName']
-        return redirect(url_for("product", medName=med_name))
+    return render_template("ailment.html", template_form=ailmt_form,
+                           template_ailmt=get_ailments(meds))
+    
+@app.route("/place_order/<ailment>", methods=["GET", "POST"])
+def index(ailment):
+    meds = Pharmacy.query.get(1).meds.all()
+    ailment_dict = create_ailment_dict(meds)
+    med_names_of_interest = ailment_dict[ailment]
+    keys = list(range(1, (len(med_names_of_interest) + 1)))
+    meds_of_interest = [ Medication.query.get(name) for name in med_names_of_interest ]
+
+    # Grab from DB
+    medications = { key:value for (key, value) in zip(keys, meds_of_interest) }
+    pill_function = list(medications.values())[0].pill_function
+
+    order_form = OrderForm()
+    if order_form.validate_on_submit():
+        return redirect(url_for("order_success"))
 
         #Run slider left
         # slider.slider_turn(form_data["med"], 0)
@@ -116,24 +113,21 @@ def index():
         
         #Run slider right
         # slider.slider_turn(form_data["med"], 1)
-    return render_template("index2.html", template_meds=medications,
-                           template_form=pill_next_form)
+    return render_template("indexProduc.html", template_meds=medications,
+                           template_form=order_form,
+                           template_title=pill_function)
 
-@app.route("/product/<medName>", methods=["GET", "POST"])
-def product(medName):
-    keys = [1, 2, 3, 4, 5, 6, 7, 8]
-    # Grab from DB
-    medication = Medication.query.get(medName)
-
-    order_form = OrderForm()
-    if order_form.validate_on_submit():
-        # form_data = order_form.data
-        # order_num = len(orders.keys()) + 1
-        # orders[order_num] = (medications[form_data["med"]], int(form_data[
-        #     "quantity"]))
-        return redirect(url_for("order_success"))
-    return render_template("product.html", template_med=medication,
-                           template_form=order_form)
+# @app.route("/product/<medName>", methods=["GET", "POST"])
+# def product(medName):
+#     keys = [1, 2, 3, 4, 5, 6, 7, 8]
+#     # Grab from DB
+#     medication = Medication.query.get(medName)
+#
+#     order_form = OrderForm()
+#     if order_form.validate_on_submit():
+#         return redirect(url_for("order_success"))
+#     return render_template("product.html", template_med=medication,
+#                            template_form=order_form)
 
 @app.route("/order_success", methods=["GET", "POST"])
 def order_success():
@@ -143,17 +137,32 @@ def order_success():
 def admin():
     return render_template("admin.html")
 
-
-
-
-
-
+############################################################################
+########################## Helper Functions ################################
+############################################################################
 
 def create_image_filenames(image_file_dict):
     out_dict = {}
     for key, value in image_file_dict.items():
         out_dict[key] = url_for('static', filename=value)
     return out_dict
+
+def create_ailment_dict(list_of_meds):
+    ailment_dict = {}
+    for med in list_of_meds:
+        if med.pill_function in ailment_dict:
+            ailment_dict[med.pill_function] += [med.name]
+        else:
+            ailment_dict[med.pill_function] = [med.name]
+    return ailment_dict
+
+
+def get_ailments(list_of_meds):
+    ailment_set = set()
+    for med in list_of_meds:
+        ailment_set.add(med.pill_function)
+    ailment_list_sorted = sorted(list(ailment_set))
+    return ailment_list_sorted
 
 if __name__ == '__main__':
     app.run()
