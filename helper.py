@@ -1,6 +1,10 @@
-from flaskServer import db, Pharmacy, Medication, app
+from flaskServer import db, Pharmacy, Medication, User, app
+from werkzeug.security import generate_password_hash
 
-pharmacy = Pharmacy(id = 1, location = 'loft')
+user1 = User(id = 1, username = 'fiveFries!',
+             password_hash = generate_password_hash("me310"))
+
+pharmacy = Pharmacy(id = 1, location = 'loft', owner_id = user1.id)
 
 tylenol = Medication(name = 'tylenol', amt_left = 400, description = 'Tylenol Description',
                      pill_per_dose = 2, image_filename = 'tylenol_1.png',
@@ -45,6 +49,7 @@ peptobismal = Medication(name = 'peptobismal', amt_left = 400, description =
                      pill_function = 'Stomach', location_id = pharmacy.id)
 
 with app.app_context():
+    db.session.add(user1)
     db.session.add(pharmacy)
 
     db.session.add(tylenol)

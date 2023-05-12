@@ -2,11 +2,12 @@
 # Additionally must store locations and pills available to dispense
 # Created Ben Randoing on 02/12/2023
 
-from flask import Flask, jsonify, request, render_template, redirect, url_for
-# from helper import medications, descriptions, ingredients, instructions, \
-#     orders, image_files, pill_per_dose, pill_function
+from flask import Flask, jsonify, request, render_template, redirect, \
+    url_for, make_response
+from flask_login import UserMixin, LoginManager, login_required, login_user, current_user
 from flask_wtf import FlaskForm
 from wtforms import SubmitField, SelectField
+from werkzeug.security import generate_password_hash, check_password_hash
 from wtforms.validators import DataRequired
 import json
 import numpy as np
@@ -25,12 +26,23 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False #to supress warning
 db = SQLAlchemy(app) #database instance
 
 #Declare Database Types that are Instantiated in helper.py
+class User(db.Model):
+  id = db.Column(db.Integer, primary_key=True)
+  username = db.Column(db.String(64), index=True, unique=True)
+  password_hash = db.Column(db.String(128))
+  pharms = db.relationship('Pharmacy', backref='admin',
+                         lazy='dynamic')
+
+  def set_password(self, password):
+      self.password_hash = generate_password_hash(password)
 
 class Pharmacy(db.Model):
     id = db.Column(db.Integer, unique=True, primary_key=True)
     location = db.Column(db.String(80), index=True, unique=True)
     meds = db.relationship('Medication', backref='pharmacy',
                                   lazy='dynamic')
+    owner_id = db.Column(db.Integer,
+                            db.ForeignKey('user.id'))  # foreign key column
 
 class Medication(db.Model):
     name = db.Column(db.String(80), index=True, unique=True,
@@ -49,6 +61,10 @@ class Medication(db.Model):
 #     db.create_all()
 
 
+############################################################################
+########################## Form Creations ##################################
+############################################################################
+
 class OrderForm(FlaskForm):
     submit = SubmitField('Submit Order')
     
@@ -60,6 +76,10 @@ class AilmtForm(FlaskForm):
 
 class AdminForm(FlaskForm):
     submit = SubmitField('Admin')
+
+############################################################################
+########################## Flask Endpoints #################################
+############################################################################
     
 @app.route("/", methods=["GET", "POST"])
 def home():
@@ -103,39 +123,45 @@ def index(ailment):
     if order_form.validate_on_submit():
         return redirect(url_for("order_success"))
 
-        #Run slider left
-        # slider.slider_turn(form_data["med"], 0)
-        
-        #Run DC Motors to Dispense
-        # dispense.motor_turn(form_data["med"], int(form_data[
-        #     "quantity"]))
-        #dispense.motor_turn(1, 1)
-        
-        #Run slider right
-        # slider.slider_turn(form_data["med"], 1)
     return render_template("indexProduc.html", template_meds=medications,
                            template_form=order_form,
                            template_title=pill_function)
-
-# @app.route("/product/<medName>", methods=["GET", "POST"])
-# def product(medName):
-#     keys = [1, 2, 3, 4, 5, 6, 7, 8]
-#     # Grab from DB
-#     medication = Medication.query.get(medName)
-#
-#     order_form = OrderForm()
-#     if order_form.validate_on_submit():
-#         return redirect(url_for("order_success"))
-#     return render_template("product.html", template_med=medication,
-#                            template_form=order_form)
 
 @app.route("/order_success", methods=["GET", "POST"])
 def order_success():
     return render_template("order_success.html")
 
+#################### Admin Endpoints #########################
+
+@app.route("/admin_portal", methods=["GET", "POST"])
+def replace():
+    meds = Pharmacy.query.get(1).meds.all()
+    keys = list(range(1, (len(meds) + 1)))
+
+    order_form = OrderForm()
+    # Grab from DB
+    medications = {key: value for (key, value) in zip(keys, meds)}
+
+    if order_form.validate_on_submit():
+        return redirect(url_for("order_success"))
+
+    return render_template("index2.html", template_meds=medications,
+                           template_form=order_form)
+
 @app.route("/admin", methods=["GET", "POST"])
 def admin():
-    return render_template("admin.html")
+    owner_id = Pharmacy.query.get(1).owner_id
+    hashed_correct_password = User.query.get(owner_id).password_hash
+    admin_form = AdminForm()
+    error_message = None  # Initialize error message to None
+    if admin_form.validate_on_submit():
+        input_password = request.form['password']
+        if check_password_hash(hashed_correct_password, input_password):
+            return redirect(url_for("replace"))
+    response = make_response(render_template("admin.html", template_form=admin_form,
+                           error_message=error_message))
+    return response
+
 
 ############################################################################
 ########################## Helper Functions ################################
@@ -155,7 +181,6 @@ def create_ailment_dict(list_of_meds):
         else:
             ailment_dict[med.pill_function] = [med.name]
     return ailment_dict
-
 
 def get_ailments(list_of_meds):
     ailment_set = set()

@@ -3,7 +3,7 @@
 <style>
 	.product-grid {
 		display: grid;
-		grid-template-columns: repeat(4, 1fr);
+		grid-template-columns: repeat(5, 1fr);
 		grid-gap: 20px;
 	}
 
@@ -63,17 +63,19 @@
 
 </style>
 <body>
+	<div class="hero" style="height: 150px">
+		<h1>Replace Which Medication? </h1>
+	</div>
 	<div class="product-grid">
 		{% for num, med in template_meds.items() %}
 		<div class="product">
 			<img src={{ url_for('static', filename=med.image_filename) }} alt={{
 			image_filename }}>
-			<h3>{{ med.pill_function }}</h3>
-			<p> {{ med.pill_per_dose }} Pills Per Dose</p>
+
 			<div class="cta">
 				<form method="post">
 				{{ template_form.hidden_tag() }}
-				<p><button class=".cta button">Order</button></p>
+<!--				<p><button class=".cta button">Replace</button></p>-->
 				<input type="hidden" name="medName" value={{ med.name }}>
 				</form>
 			</div>
