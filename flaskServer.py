@@ -12,10 +12,12 @@ from wtforms.validators import DataRequired
 import json
 import numpy as np
 from flask_sqlalchemy import SQLAlchemy
-# import stepper
+import paho.mqtt.client as mqtt
+
+import advance
 # import dispense
 # import slider
-# import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 import time
 
 
@@ -60,6 +62,37 @@ class Medication(db.Model):
 #     # Use SQLAlchemy functionality that requires the application context
 #     db.create_all()
 
+############################################################################
+########################## Setup MQTT ######################################
+############################################################################
+
+def on_connect(client, userdata, flags, rc):
+    print("Connected to MQTT broker with result code: " + str(rc))
+    client.subscribe("order")
+    
+def on_message(client, userdata, msg):
+    topic = msg.topic
+    payload = str(msg.payload.decode("utf-8"))
+    print("Received MSG");
+    
+    if topic == "order":
+        # Handle message for order
+        json_data = json.loads(payload)
+        location = json_data["location"]
+        quantity = json_data["quantity"]
+        print("Received MSG");
+        print(f"Order loaction is {location} with quantity of {quantity}.")
+        advance.dispense(int(quantity / 2) - 1)
+        # Process topic1 message as needed
+        
+broker_address = "localhost"
+port = 1883
+client = mqtt.Client()
+client.on_connect = on_connect
+client.on_message = on_message
+
+client.connect(broker_address, port)
+client.loop_start()
 
 ############################################################################
 ########################## Form Creations ##################################
@@ -121,6 +154,16 @@ def index(ailment):
 
     order_form = OrderForm()
     if order_form.validate_on_submit():
+        # mqtt connect to client, send, disconnect
+        # client.connect(broker_address, port)
+        topic = "order"
+        data = {
+            "location": 1,
+            "quantity": 6
+        }
+        json_data = json.dumps(data)
+        client.publish(topic, json_data)
+        client.loop_start()
         return redirect(url_for("order_success"))
 
     return render_template("indexProduc.html", template_meds=medications,
@@ -167,6 +210,8 @@ def admin():
 ########################## Helper Functions ################################
 ############################################################################
 
+
+        
 def create_image_filenames(image_file_dict):
     out_dict = {}
     for key, value in image_file_dict.items():
@@ -190,4 +235,5 @@ def get_ailments(list_of_meds):
     return ailment_list_sorted
 
 if __name__ == '__main__':
+    app.run()
     app.run()
