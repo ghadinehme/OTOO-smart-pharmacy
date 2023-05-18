@@ -8,3 +8,5 @@ flask_sqlalchemy
 flask_login
 werkzeug
 flask_migrate
+paho-mqtt
+serial

@@ -2,10 +2,37 @@
 {% block content %}
 <title>Product Page - Product 1</title>
 <style>
+	
+	body {
+	  /*overflow-x: hidden; !* creates horizontal scrollbar *!*/
+	  overflow-y: hidden; /* hides vertical scrollbar */
+	}
 
+	.hero {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		height: 400px;
+		background-color: transparent;
+		background-image: url("https://www.example.com/pills-image.jpg");
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+
+	.hero h1 {
+		font-size: 48px;
+		font-weight: bold;
+		color: #FF0000;
+		text-align: center;
+		margin-bottom: 20px;
+		font-family: "Open Sans", sans-serif;
+	}
+		
 	.product {
 		display: inline-block;
-		width: 400px;
+		width: 300px;
 		height: 700px;
 		flex-direction: column;
 		align-items: center;
@@ -82,39 +109,56 @@
 		color: #FF0000;
 		border: 2px solid #FF0000;
 	}
+	
+	.scroll {
+		display: inline-block;
+		/*overflow-x: auto;*/
+	}
+	
+	.container {
+		overflow-x: auto;
+		max-width: 1200px;
+		min-width: 500px;
+		margin: 0 auto;
+		padding: 20px;
+		position: inline-block;
+	}
+
 
 
 </style>
 <body>
-	<div class="hero" style="height: 150px">
+	<div class="hero" style="height: 80px">
 		<h1>{{ template_title }}</h1>
 	</div>
 	<div class="container" style="max-width: 1900px;">
-		{% for num, med in template_meds.items() %}
-		<div class="product" id="{{ med.name }}">
-			<img src={{ url_for('static', filename=med.image_filename) }}
-				alt="Product 1">
-	<!--		<p>{{ med.pill_per_dose }} Pills Per Dose</p>-->
-			<div class="quantity">
-				<button class="decrement" id="dec">-</button>
-				<input type="number" id="quantity" name="quantity" min="2"
-					   value="2" step={{ med.pill_per_dose }} max="10">
-				<button class="increment" id="inc">+</button>
+		<div class="scroll">
+			{% for num, med in template_meds.items() %}
+			<div class="product" id="{{ med.name }}">
+				<img src={{ url_for('static', filename=med.image_filename) }}
+					alt="Product 1">
+		<!--		<p>{{ med.pill_per_dose }} Pills Per Dose</p>-->
+				<div class="quantity">
+					<button class="decrement" id="dec">-</button>
+					<input type="number" id="quantity" name="quantity" min="2"
+						   value="2" step={{ med.pill_per_dose }} max="10">
+					<button class="increment" id="inc">+</button>
+				</div>
+				<div class="cta">
+					<form method="post">
+					{{ template_form.hidden_tag() }}
+						<p>
+							<button>
+								<div>
+									<h1 style="font-size: 18px;">Submit Order</h1>
+								</div>
+							</button>
+						</p>
+					</form>
+				</div>
 			</div>
-			<div class="cta">
-				<form method="post">
-				{{ template_form.hidden_tag() }}
-					<p>
-						<button>
-							<div>
-								<h1>Submit Order</h1>
-							</div>
-						</button>
-					</p>
-				</form>
-			</div>
+			{% endfor %}
 		</div>
-		{% endfor %}
 	</div>
 	<div id="overlay">
 	</div>

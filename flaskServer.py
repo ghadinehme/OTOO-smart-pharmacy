@@ -82,7 +82,7 @@ def on_message(client, userdata, msg):
         quantity = json_data["quantity"]
         print("Received MSG");
         print(f"Order loaction is {location} with quantity of {quantity}.")
-        advance.dispense(int(quantity / 2) - 1)
+        advance.dispense(int(quantity / 2) - 1, location)
         # Process topic1 message as needed
         
 broker_address = "localhost"
@@ -159,7 +159,7 @@ def index(ailment):
         topic = "order"
         data = {
             "location": 1,
-            "quantity": 6
+            "quantity": 4
         }
         json_data = json.dumps(data)
         client.publish(topic, json_data)
@@ -235,5 +235,4 @@ def get_ailments(list_of_meds):
     return ailment_list_sorted
 
 if __name__ == '__main__':
-    app.run()
-    app.run()
+    app.run(host="0.0.0.0")
