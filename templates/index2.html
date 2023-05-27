@@ -12,7 +12,7 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		background-color: #f2f2f2;
+		/*background-color: #f2f2f2;*/
 		border-radius: 10px;
 		padding: 40px;
 		text-align: center;
@@ -64,23 +64,26 @@
 </style>
 <body>
 	<div class="hero" style="height: 150px">
-		<h1>Replace Which Medication? </h1>
+		<h1>Choose the Medication to Replace</h1>
 	</div>
 	<div class="product-grid">
 		{% for num, med in template_meds.items() %}
 		<div class="product">
 			<img src={{ url_for('static', filename=med.image_filename) }} alt={{
 			image_filename }}>
-
+			<h2 style="margin-bottom: 0;">Location: {{ med.pharm_location}}</h2>
+			<h4>Pills Left: {{ med.amt_left}}</h4>
 			<div class="cta">
 				<form method="post">
-				{{ template_form.hidden_tag() }}
-<!--				<p><button class=".cta button">Replace</button></p>-->
-				<input type="hidden" name="medName" value={{ med.name }}>
+					{{ template_form.hidden_tag() }}
+					<p><button class=".cta button">Replace</button></p>
+					<input type="hidden" name="medName" value={{ med.name }}>
+					<input type="hidden" name="location" value={{ med.pharm_location }}>
 				</form>
 			</div>
 		</div>
 		{% endfor %}
 	</div>
 </body>
+
 {% endblock %}

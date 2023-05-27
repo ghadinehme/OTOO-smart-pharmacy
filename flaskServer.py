@@ -14,10 +14,19 @@ import numpy as np
 from flask_sqlalchemy import SQLAlchemy
 import paho.mqtt.client as mqtt
 
-import advance
+import requests
+# from pyzbar.pyzbar import decode
+from bs4 import BeautifulSoup
+from qr import read_qr
+
+
 # import dispense
 # import slider
-import RPi.GPIO as GPIO
+try:
+    import RPi.GPIO as GPIO
+    import advance
+except ImportError:
+    pass
 import time
 
 
@@ -47,8 +56,8 @@ class Pharmacy(db.Model):
                             db.ForeignKey('user.id'))  # foreign key column
 
 class Medication(db.Model):
-    name = db.Column(db.String(80), index=True, unique=True,
-                     primary_key=True) # primary key
+    pharm_location = db.Column(db.Integer, unique=True, primary_key=True) # primary key
+    name = db.Column(db.String(80), index=True, unique=True)
     amt_left = db.Column(db.Integer, unique=False)
     description = db.Column(db.String(50), index=True, unique=False)
     pill_per_dose = db.Column(db.Integer, unique=False)
@@ -57,10 +66,10 @@ class Medication(db.Model):
     location_id = db.Column(db.Integer,
                         db.ForeignKey('pharmacy.id'))  # foreign key column
 
-# # Use when setting up machine to create database
-# with app.app_context():
-#     # Use SQLAlchemy functionality that requires the application context
-#     db.create_all()
+# Use when setting up machine to create database
+with app.app_context():
+    # Use SQLAlchemy functionality that requires the application context
+    db.create_all()
 
 ############################################################################
 ########################## Setup MQTT ######################################
@@ -110,6 +119,12 @@ class AilmtForm(FlaskForm):
 class AdminForm(FlaskForm):
     submit = SubmitField('Admin')
 
+class QRForm(FlaskForm):
+    submit = SubmitField('Done')
+
+class RefillForm(FlaskForm):
+    submit = SubmitField('Done')
+
 ############################################################################
 ########################## Flask Endpoints #################################
 ############################################################################
@@ -134,7 +149,6 @@ def ailment():
     ailmt_form = AilmtForm()
     if ailmt_form.validate_on_submit():
         ailmentIn = request.form['ailment']
-        print(ailmentIn)
         return redirect(url_for("index", ailment=ailmentIn))
 
     return render_template("ailment.html", template_form=ailmt_form,
@@ -186,10 +200,43 @@ def replace():
     medications = {key: value for (key, value) in zip(keys, meds)}
 
     if order_form.validate_on_submit():
-        return redirect(url_for("order_success"))
+        location_store = request.form['location']
+        return redirect(url_for("qr", location_store=location_store))
 
     return render_template("index2.html", template_meds=medications,
                            template_form=order_form)
+
+@app.route("/qr/<int:location_store>", methods=["GET", "POST"])
+def qr(location_store):
+    qr_form = QRForm()
+    # read_qr()
+
+    if qr_form.validate_on_submit():
+        #remove at index
+        medication_old = Medication.query.get(location_store)
+        db.session.delete(medication_old)
+        db.session.commit()
+
+        medicine_name = read_qr()
+
+        #replace at index
+        return redirect(url_for("refill", location=location_store, name=medicine_name))
+
+    return render_template("QR.html",
+                           template_form=qr_form)
+
+@app.route("/refill/<int:location>/<name>", methods=["GET", "POST"])
+def refill(location, name):
+    medicine_name = name
+    refill_form = RefillForm()
+
+    if refill_form.validate_on_submit():
+        print("here")
+        return redirect(url_for("replace"))
+
+    return render_template("replace.html", template_form=refill_form,
+                           template_name=medicine_name, template_loc=location)
+
 
 @app.route("/admin", methods=["GET", "POST"])
 def admin():
@@ -235,4 +282,4 @@ def get_ailments(list_of_meds):
     return ailment_list_sorted
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0")
+    app.run(host="0.0.0.0", port=5050)

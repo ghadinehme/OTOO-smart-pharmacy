@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+	body {
+			background-image: url('https://t3.ftcdn.net/jpg/00/87/69/38/240_F_87693883_lA6YcoWtCHwDesWDPXhzk0ho7vPyI8dt.jpg');
+			background-size: 80%;
+			background-position: 140px 500px;
+			background-repeat: no-repeat;
+		}
+</style>
+
+
+<div class="container">
+	<section class="hero">
+		<h1>Please Replace {{ template_loc }} with {{ template_name }}
+			Cartridge
+		</h1>
+		<div class="cta">
+			<form name="next" method="post">
+				{{ template_form.hidden_tag() }}
+				<p><button class="cta button">Done</button></p>
+				<input type="hidden" name="formName" value="next">
+			</form>
+		</div>
+	</section>
+</div>
+{% endblock %}
