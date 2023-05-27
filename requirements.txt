@@ -10,3 +10,7 @@ werkzeug
 flask_migrate
 paho-mqtt
 serial
+requests
+pyzbar
+bs4
+pyserial
