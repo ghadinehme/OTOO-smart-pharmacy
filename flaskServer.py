@@ -13,11 +13,12 @@ import json
 import numpy as np
 from flask_sqlalchemy import SQLAlchemy
 import paho.mqtt.client as mqtt
+import json
 
 import requests
 # from pyzbar.pyzbar import decode
 from bs4 import BeautifulSoup
-from qr import read_qr
+from scan import read_qr
 
 
 # import dispense
@@ -57,19 +58,19 @@ class Pharmacy(db.Model):
 
 class Medication(db.Model):
     pharm_location = db.Column(db.Integer, unique=True, primary_key=True) # primary key
-    name = db.Column(db.String(80), index=True, unique=True)
+    name = db.Column(db.String(80), index=True, unique=False)
     amt_left = db.Column(db.Integer, unique=False)
     description = db.Column(db.String(50), index=True, unique=False)
     pill_per_dose = db.Column(db.Integer, unique=False)
-    image_filename = db.Column(db.String(80), unique=True)
+    image_filename = db.Column(db.String(80), unique=False)
     pill_function = db.Column(db.String(80), unique=False) # ie: Pain Relief
     location_id = db.Column(db.Integer,
                         db.ForeignKey('pharmacy.id'))  # foreign key column
 
 # Use when setting up machine to create database
-with app.app_context():
+#with app.app_context():
     # Use SQLAlchemy functionality that requires the application context
-    db.create_all()
+#    db.create_all()
 
 ############################################################################
 ########################## Setup MQTT ######################################
@@ -158,12 +159,18 @@ def ailment():
 def index(ailment):
     meds = Pharmacy.query.get(1).meds.all()
     ailment_dict = create_ailment_dict(meds)
-    med_names_of_interest = ailment_dict[ailment]
-    keys = list(range(1, (len(med_names_of_interest) + 1)))
-    meds_of_interest = [ Medication.query.get(name) for name in med_names_of_interest ]
+    print(ailment_dict)
+
+    med_locs_of_interest = ailment_dict[ailment]
+    print(med_locs_of_interest)
+    keys = list(range(1, (len(med_locs_of_interest) + 1)))
+    meds_of_interest = [ Medication.query.get(pharm_loc) for pharm_loc in med_locs_of_interest ]
+    print(meds_of_interest)
+
 
     # Grab from DB
     medications = { key:value for (key, value) in zip(keys, meds_of_interest) }
+    print(medications)
     pill_function = list(medications.values())[0].pill_function
 
     order_form = OrderForm()
@@ -175,6 +182,11 @@ def index(ailment):
             "location": 1,
             "quantity": 4
         }
+        # modify the amt_left of drug purchased
+        existing_medication = Medication.query.get(data["location"])
+        existing_medication.amt_left = existing_medication.amt_left - data["quantity"]
+        db.session.commit()
+        
         json_data = json.dumps(data)
         client.publish(topic, json_data)
         client.loop_start()
@@ -217,7 +229,25 @@ def qr(location_store):
         db.session.delete(medication_old)
         db.session.commit()
 
-        medicine_name = read_qr()
+        medicine_string = read_qr()
+        medicine_json = json.loads(medicine_string)
+        medicine_name = medicine_json["name"]
+        amt_left = medicine_json["amt_left"]
+        description = medicine_json["description"]
+        pill_per_dose = medicine_json["pill_per_dose"]
+        img_file = medicine_json["image_filename"]
+        pill_function = medicine_json["pill_function"]
+        pharm_location = location_store
+        location_id = 1
+
+                
+        new_medication = Medication(name=medicine_name, amt_left=amt_left, 
+                                    description=description, pill_per_dose=pill_per_dose,
+                                    image_filename=img_file, pill_function=pill_function,
+                                    pharm_location=pharm_location, location_id=location_id)
+        
+        db.session.add(new_medication)
+        db.session.commit()
 
         #replace at index
         return redirect(url_for("refill", location=location_store, name=medicine_name))
@@ -269,9 +299,9 @@ def create_ailment_dict(list_of_meds):
     ailment_dict = {}
     for med in list_of_meds:
         if med.pill_function in ailment_dict:
-            ailment_dict[med.pill_function] += [med.name]
+            ailment_dict[med.pill_function] += [med.pharm_location]
         else:
-            ailment_dict[med.pill_function] = [med.name]
+            ailment_dict[med.pill_function] = [med.pharm_location]
     return ailment_dict
 
 def get_ailments(list_of_meds):

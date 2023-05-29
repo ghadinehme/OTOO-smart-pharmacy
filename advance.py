@@ -8,7 +8,7 @@ import logging
 def dispense(request, location):
 	# Ender Starters 
 	
-	serial_port = '/dev/ttyUSB0'
+	serial_port = '/dev/ttyUSB1'
 	baud_rate = 115200
 
 	ser = serial.Serial(serial_port, baud_rate, timeout=1)
@@ -68,7 +68,7 @@ def dispense(request, location):
 	def move_to_medication_position(ser, medication_number):
 		try:
 			medication_positions = {
-				1: 60,
+				1: 5,
 				2: 200,
 				3: 300,
 				4: 400,
@@ -117,8 +117,6 @@ def dispense(request, location):
 	############################## End of Ender Functions ################
 	######################################################################
 	
-	time.sleep(1)
-
  
 	# Set the GPIO mode
 	GPIO.setmode(GPIO.BCM)
@@ -213,7 +211,7 @@ def dispense(request, location):
 	time.sleep(0.6)  # Run the motor forward for 2 seconds
 	motor_stop()
 	
-	time.sleep(2)        
+	time.sleep(1)        
 	move_to_home_position(ser)
 		
 
