@@ -13,7 +13,16 @@
 <div class="container">
 	<section class="hero">
 		<h1>Please Scan New Cartridge QR Code</h1>
-<!--		<div style="overflow-x: auto; white-space: nowrap;">-->
+		<div class="cta" style="position: absolute; left: 80px; top: 120px;">
+			<button class="cta button" onclick="goBack()">Back</button>
+			<script>
+			function goBack() {
+			  fetch('/admin_portal');
+			  window.history.back();
+			}
+			</script>
+		</div>
+	<!--		<div style="overflow-x: auto; white-space: nowrap;">-->
 <!--			<div style="display: inline-block;">-->
 <!--				<span class="image main">-->
 <!--					<img src="documents/arya/L_Shaped1.5-4.gif" alt="" />-->

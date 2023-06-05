@@ -12,12 +12,18 @@ tylenol = Medication(name = 'tylenol', amt_left = 400, description = 'Tylenol De
                      pill_function = 'Pain Relief', pharm_location = 1,
                      location_id = \
     pharmacy.id)
+    
+tums = Medication(name = 'tums', amt_left = 400, description = 'Tums Description',
+                     pill_per_dose = 2, image_filename = 'tums.png',
+                     pill_function = ' Stomach', pharm_location = 2,
+                     location_id = \
+    pharmacy.id)
 
-advil = Medication(name = 'advil', amt_left = 400, description = 'Advil '
-                     'Description',
-                     pill_per_dose = 2, image_filename = 'advil.png',
-                     pill_function = 'Pain Relief', pharm_location = 2,
-                     location_id = pharmacy.id)
+# ~ advil = Medication(name = 'advil', amt_left = 400, description = 'Advil '
+                     # ~ 'Description',
+                     # ~ pill_per_dose = 2, image_filename = 'advil.png',
+                     # ~ pill_function = 'Pain Relief', pharm_location = 2,
+                     # ~ location_id = pharmacy.id)
 
 aleve = Medication(name = 'aleve', amt_left = 400, description = 'Aleve '
                      'Description',
@@ -25,49 +31,44 @@ aleve = Medication(name = 'aleve', amt_left = 400, description = 'Aleve '
                      pill_function = 'Pain Relief', pharm_location =
                      3, location_id = pharmacy.id)
 
-zantac = Medication(name = 'zantac', amt_left = 400, description = 'Zantac '
-                     'Description',
-                     pill_per_dose = 2, image_filename = 'zantac_1.png',
-                     pill_function = 'Antacid', pharm_location = 4,
-                     location_id = pharmacy.id)
+# ~ zantac = Medication(name = 'zantac', amt_left = 400, description = 'Zantac '
+                     # ~ 'Description',
+                     # ~ pill_per_dose = 2, image_filename = 'zantac_1.png',
+                     # ~ pill_function = 'Antacid', pharm_location = 4,
+                     # ~ location_id = pharmacy.id)
 
-claritin = Medication(name = 'claritin', amt_left = 400, description =
-                     'Claritin Description',
-                     pill_per_dose = 2, image_filename = 'claritin.png',
-                     pill_function = 'Allergy Relief', pharm_location = 5,
-                     location_id = pharmacy.id)
+# ~ claritin = Medication(name = 'claritin', amt_left = 400, description =
+                     # ~ 'Claritin Description',
+                     # ~ pill_per_dose = 2, image_filename = 'claritin.png',
+                     # ~ pill_function = 'Allergy Relief', pharm_location = 5,
+                     # ~ location_id = pharmacy.id)
 
-zyrtec = Medication(name = 'zyrtec', amt_left = 400, description = 'Zyrtec '
-                     'Description',
-                     pill_per_dose = 2, image_filename = 'zyrtek_1.png',
-                     pill_function = 'Allergy Relief', pharm_location =
-                     6, location_id = pharmacy.id)
+# ~ zyrtec = Medication(name = 'zyrtec', amt_left = 400, description = 'Zyrtec '
+                     # ~ 'Description',
+                     # ~ pill_per_dose = 2, image_filename = 'zyrtek_1.png',
+                     # ~ pill_function = 'Allergy Relief', pharm_location =
+                     # ~ 6, location_id = pharmacy.id)
 
-dayquil = Medication(name = 'dayquil', amt_left = 400, description = 'DayQuil '
-                     'Description',
-                     pill_per_dose = 2, image_filename = 'dayquil.png',
-                     pill_function = 'Cold and Flu', pharm_location = 7,
-                     location_id =
-                     pharmacy.id)
+# ~ dayquil = Medication(name = 'dayquil', amt_left = 400, description = 'DayQuil '
+                     # ~ 'Description',
+                     # ~ pill_per_dose = 2, image_filename = 'dayquil.png',
+                     # ~ pill_function = 'Cold and Flu', pharm_location = 7,
+                     # ~ location_id =
+                     # ~ pharmacy.id)
 
-peptobismal = Medication(name = 'peptobismal', amt_left = 400, description =
-                     'Peptobismal Description',
-                     pill_per_dose = 2, image_filename = 'peptobismol.png',
-                     pill_function = 'Stomach', pharm_location = 8,
-                         location_id = pharmacy.id)
+# ~ peptobismol = Medication(name = 'peptobismol', amt_left = 400, description =
+                     # ~ 'Peptobismol Description',
+                     # ~ pill_per_dose = 2, image_filename = 'peptobismol.png',
+                     # ~ pill_function = 'Stomach', pharm_location = 8,
+                         # ~ location_id = pharmacy.id)
 
 with app.app_context():
     db.session.add(user1)
     db.session.add(pharmacy)
 
     db.session.add(tylenol)
-    db.session.add(advil)
     db.session.add(aleve)
-    db.session.add(zantac)
-    db.session.add(claritin)
-    db.session.add(zyrtec)
-    db.session.add(dayquil)
-    db.session.add(peptobismal)
+
 
     try:
         db.session.commit()

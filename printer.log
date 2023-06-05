@@ -382,4 +382,386 @@ INFO:werkzeug:127.0.0.1 - - [26/May/2023 20:12:15] "GET / HTTP/1.1" 200 -
 ERROR:root:Error: Timed out waiting for printer to move to medication position 1
 INFO:root:Moved to medication position 1. X position: None
 INFO:root:Moved to home position. X position: 0.0, Y position: 0.0, Z position: 0.0
-                                                                                                                                                                     
+                                                                                                                                                                     ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+ERROR:root:Error: Timed out waiting for printer to move to medication position 1
+INFO:root:Moved to medication position 1. X position: None
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+ERROR:root:Error: Timed out waiting for printer to move to medication position 1
+INFO:root:Moved to medication position 1. X position: None
+INFO:root:Moved to home position. X position: 0.0, Y position: 0.0, Z position: 0.0
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+ERROR:root:Error: Timed out waiting for printer to move to medication position 1
+INFO:root:Moved to medication position 1. X position: None
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+ERROR:root:Error: Timed out waiting for printer to move to medication position 1
+INFO:root:Moved to medication position 1. X position: None
+INFO:root:Moved to home position. X position: 0.0, Y position: 0.0, Z position: 0.0
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+ERROR:root:Error: Timed out waiting for printer to move to medication position 1
+INFO:root:Moved to medication position 1. X position: None
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 01:57:03] "GET /order_success HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 01:57:13] "GET / HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+ERROR:root:Error: Timed out waiting for printer to move to medication position 1
+INFO:root:Moved to medication position 1. X position: None
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:01:52] "GET /order_success HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:02:02] "GET / HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+ERROR:root:Error: Timed out waiting for printer to move to medication position 1
+INFO:root:Moved to medication position 1. X position: None
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:03:34] "GET /order_success HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:03:44] "GET / HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to medication position 1
+INFO:root:Moved to medication position 1. X position: None
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:07:35] "GET /order_success HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:07:46] "GET / HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to medication position 1
+INFO:root:Moved to medication position 1. X position: None
+INFO:root:Moved to home position. X position: 0.0, Y position: 0.0, Z position: 0.0
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:08:35] "[32mPOST / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:08:35] "GET /ailment HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:08:36] "[32mPOST /ailment HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:08:36] "GET /place_order/Cold%20and%20Flu HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:08:36] "[36mGET /static/dayquil.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:08:44] "[32mPOST /place_order/Cold%20and%20Flu HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:08:44] "GET /order_success HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:08:54] "GET / HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to medication position 1
+INFO:root:Moved to medication position 1. X position: None
+INFO:root:Moved to home position. X position: 0.0, Y position: 0.0, Z position: 0.0
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:09:49] "[32mPOST / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:09:49] "GET /ailment HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:10:06] "[32mPOST /ailment HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:10:06] "GET /place_order/Cold%20and%20Flu HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:10:06] "[36mGET /static/dayquil.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:10:16] "[32mPOST /place_order/Cold%20and%20Flu HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:10:16] "GET /order_success HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:10:26] "GET / HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to medication position 1
+INFO:root:Moved to medication position 1. X position: None
+INFO:root:Moved to home position. X position: 0.0, Y position: 0.0, Z position: 0.0
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:24:08] "[32mPOST / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:24:08] "GET /ailment HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:24:09] "[32mPOST /ailment HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:24:09] "GET /place_order/Allergy%20Relief HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:24:09] "[36mGET /static/claritin.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:24:09] "[36mGET /static/zyrtek_1.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:24:12] "[32mPOST /place_order/Allergy%20Relief HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:24:12] "GET /order_success HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:24:22] "GET / HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to medication position 1
+INFO:root:Moved to medication position 1. X position: None
+INFO:root:Moved to home position. X position: 0.0, Y position: 0.0, Z position: 0.0
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:25:01] "[32mPOST / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:25:01] "GET /ailment HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:25:03] "[32mPOST /ailment HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:25:03] "GET /place_order/Allergy%20Relief HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:25:03] "[36mGET /static/claritin.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:25:03] "[36mGET /static/zyrtek_1.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:25:04] "[32mPOST /place_order/Allergy%20Relief HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:25:04] "GET /order_success HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:25:14] "GET / HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to medication position 1
+INFO:root:Moved to medication position 1. X position: None
+INFO:root:Moved to home position. X position: 0.0, Y position: 0.0, Z position: 0.0
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:33:45] "[32mPOST / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:33:45] "GET /ailment HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:33:48] "[32mPOST /ailment HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:33:48] "GET /place_order/Pain%20Relief HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:33:48] "[36mGET /static/tylenol_1.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:33:48] "[36mGET /static/aleve_1.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:33:52] "[32mPOST /place_order/Pain%20Relief HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:33:52] "GET /order_success HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:34:02] "GET / HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to medication position 1
+INFO:root:Moved to medication position 1. X position: None
+INFO:root:Moved to home position. X position: 0.0, Y position: 0.0, Z position: 0.0
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:42:18] "GET /order_success HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:42:28] "GET / HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:46:40] "GET /order_success HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:47:06] "GET /order_success HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:47:16] "GET / HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to medication position 2
+INFO:root:Moved to medication position 2. X position: None
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:50:44] "GET /order_success HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:50:54] "GET / HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to medication position 3
+INFO:root:Moved to medication position 3. X position: None
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:59:18] "GET /order_success HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:59:28] "GET / HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 02:59:59] "GET /order_success HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:00:09] "GET / HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to medication position 2
+INFO:root:Moved to medication position 2. X position: None
+ERROR:root:Error: write failed: [Errno 5] Input/output error
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:13:09] "GET /order_success HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:13:20] "GET / HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to medication position 2
+INFO:root:Moved to medication position 2. X position: None
+INFO:root:Moved to home position. X position: 0.0, Y position: 0.0, Z position: 0.0
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:13:50] "[32mPOST / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:13:50] "GET /ailment HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:13:50] "[32mPOST /ailment HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:13:50] "GET /place_order/Antacid HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:13:51] "[36mGET /static/zantac_1.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:13:52] "[32mPOST /place_order/Antacid HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:13:52] "GET /order_success HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:14:03] "GET / HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to medication position 2
+INFO:root:Moved to medication position 2. X position: None
+INFO:root:Moved to home position. X position: 0.0, Y position: 0.0, Z position: 0.0
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:14:41] "[32mPOST / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:14:41] "GET /ailment HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:14:42] "[32mPOST /ailment HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:14:42] "GET /place_order/Antacid HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:14:42] "[36mGET /static/zantac_1.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:14:43] "[32mPOST /place_order/Antacid HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:14:43] "GET /order_success HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:14:53] "GET / HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to medication position 2
+INFO:root:Moved to medication position 2. X position: None
+INFO:root:Moved to home position. X position: 0.0, Y position: 0.0, Z position: 0.0
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:17:00] "[32mPOST / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:17:00] "GET /ailment HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:17:01] "[32mPOST /ailment HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:17:01] "GET /place_order/Antacid HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:17:01] "[36mGET /static/zantac_1.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:17:03] "[32mPOST /place_order/Antacid HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:17:03] "GET /order_success HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:17:14] "GET / HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to medication position 2
+INFO:root:Moved to medication position 2. X position: None
+INFO:root:Moved to home position. X position: 0.0, Y position: 0.0, Z position: 0.0
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:20:44] "[32mPOST / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:20:44] "GET /ailment HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:20:44] "[32mPOST /ailment HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:20:44] "GET /place_order/Antacid HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:20:45] "[36mGET /static/zantac_1.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:20:47] "[32mPOST /place_order/Antacid HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:20:47] "GET /order_success HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:20:57] "GET / HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to medication position 2
+INFO:root:Moved to medication position 2. X position: None
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:21:38] "[32mPOST / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:21:38] "GET /ailment HTTP/1.1" 200 -
+INFO:root:Moved to home position. X position: 0.0, Y position: 0.0, Z position: 0.0
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:21:39] "[32mPOST /ailment HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:21:39] "GET /place_order/Antacid HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:21:39] "[36mGET /static/zantac_1.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:21:40] "[32mPOST /place_order/Antacid HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:21:40] "GET /order_success HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:21:51] "GET / HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to medication position 2
+INFO:root:Moved to medication position 2. X position: None
+INFO:root:Moved to home position. X position: 0.0, Y position: 0.0, Z position: 0.0
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:23:15] "[32mPOST / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:23:15] "GET /ailment HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:23:16] "[32mPOST /ailment HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:23:16] "GET /place_order/Antacid HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:23:16] "[36mGET /static/zantac_1.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:23:18] "[32mPOST /place_order/Antacid HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:23:18] "GET /order_success HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:23:28] "GET / HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to medication position 2
+INFO:root:Moved to medication position 2. X position: None
+INFO:root:Moved to home position. X position: 0.0, Y position: 0.0, Z position: 0.0
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:35:01] "[32mPOST / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:35:01] "GET /ailment HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:35:02] "[32mPOST /ailment HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:35:02] "GET /place_order/Antacid HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:35:02] "[36mGET /static/zantac_1.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:35:04] "[32mPOST /place_order/Antacid HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:35:04] "GET /order_success HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:35:14] "GET / HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to medication position 2
+INFO:root:Moved to medication position 2. X position: None
+INFO:root:Moved to home position. X position: 0.0, Y position: 0.0, Z position: 0.0
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:36:20] "[32mPOST / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:36:20] "GET /ailment HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:36:20] "[32mPOST /ailment HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:36:21] "GET /place_order/Antacid HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:36:21] "[36mGET /static/zantac_1.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:36:23] "[32mPOST /place_order/Antacid HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:36:23] "GET /order_success HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:36:33] "GET / HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to medication position 2
+INFO:root:Moved to medication position 2. X position: None
+INFO:root:Moved to home position. X position: 0.0, Y position: 0.0, Z position: 0.0
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:38:39] "[32mPOST /place_order/Antacid HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:38:39] "GET /order_success HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:38:49] "GET / HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to medication position 3
+INFO:root:Moved to medication position 3. X position: None
+INFO:root:Moved to home position. X position: 0.0, Y position: 0.0, Z position: 0.0
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+ERROR:root:Error: Timed out waiting for printer to move to medication position 3
+INFO:root:Moved to medication position 3. X position: None
+INFO:root:Moved to home position. X position: 0.0, Y position: 0.0, Z position: 0.0
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:40:45] "GET /order_success HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:40:55] "GET / HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to medication position 4
+INFO:root:Moved to medication position 4. X position: None
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:42:17] "GET /order_success HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:42:27] "GET / HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to medication position 1
+INFO:root:Moved to medication position 1. X position: None
+INFO:root:Moved to home position. X position: 0.0, Y position: 0.0, Z position: 0.0
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:58:52] "GET /order_success HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 03:59:02] "GET / HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+ERROR:root:Error: Timed out waiting for printer to move to medication position 1
+INFO:root:Moved to medication position 1. X position: None
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 04:00:45] "GET /order_success HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 04:00:55] "GET / HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+ERROR:root:Error: Timed out waiting for printer to move to medication position 2
+INFO:root:Moved to medication position 2. X position: None
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 04:01:51] "GET /order_success HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 04:02:01] "GET / HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+ERROR:root:Error: Timed out waiting for printer to move to medication position 3
+INFO:root:Moved to medication position 3. X position: None
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 04:04:24] "GET /order_success HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 04:04:34] "GET / HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+ERROR:root:Error: Timed out waiting for printer to move to medication position 4
+INFO:root:Moved to medication position 4. X position: None
+ERROR:root:Error: write failed: [Errno 5] Input/output error
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 04:06:59] "GET /order_success HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 04:07:10] "GET / HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 05:44:54] "GET /order_success HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 05:45:04] "GET / HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+ERROR:root:Error: Timed out waiting for printer to move to medication position 4
+INFO:root:Moved to medication position 4. X position: None
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 05:49:47] "GET /order_success HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 05:49:57] "GET / HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to medication position 2
+INFO:root:Moved to medication position 2. X position: None
+INFO:root:Moved to home position. X position: 0.0, Y position: 0.0, Z position: 0.0
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 05:54:48] "GET /order_success HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 05:54:58] "GET / HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to medication position 3
+INFO:root:Moved to medication position 3. X position: None
+INFO:root:Moved to home position. X position: 0.0, Y position: 0.0, Z position: 0.0
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 05:55:45] "[32mPOST / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 05:55:45] "GET /ailment HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 05:55:46] "[32mPOST /ailment HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 05:55:46] "GET /place_order/Cold%20and%20Flu HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 05:55:46] "[36mGET /static/dayquil.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 05:55:48] "[32mPOST /place_order/Cold%20and%20Flu HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 05:55:48] "GET /order_success HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 05:55:58] "GET / HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to medication position 3
+INFO:root:Moved to medication position 3. X position: None
+INFO:root:Moved to home position. X position: 0.0, Y position: 0.0, Z position: 0.0
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 05:56:49] "GET /order_success HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 05:57:00] "GET / HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to medication position 4
+INFO:root:Moved to medication position 4. X position: None
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 05:57:53] "GET /order_success HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 05:58:04] "GET / HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to medication position 1
+INFO:root:Moved to medication position 1. X position: None
+INFO:root:Moved to home position. X position: 0.0, Y position: 0.0, Z position: 0.0
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 05:58:35] "[32mPOST / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 05:58:35] "GET /ailment HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 05:58:36] "[32mPOST /ailment HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 05:58:36] "GET /place_order/Cold%20and%20Flu HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 05:58:36] "[36mGET /static/dayquil.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 05:58:38] "[32mPOST /place_order/Cold%20and%20Flu HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 05:58:38] "GET /order_success HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to home position
+INFO:root:Moved to home position. X position: None, Y position: None, Z position: None
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 05:58:48] "GET / HTTP/1.1" 200 -
+ERROR:root:Error: Timed out waiting for printer to move to medication position 1
+INFO:root:Moved to medication position 1. X position: None
+INFO:root:Moved to home position. X position: 0.0, Y position: 0.0, Z position: 0.0
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5050
+ * Running on http://192.168.10.147:5050
+INFO:werkzeug:[33mPress CTRL+C to quit[0m

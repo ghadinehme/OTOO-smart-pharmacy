@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Smart Pharmacy</title>
+	<title>OTOO</title>
 <!--	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">-->
 	<style type="text/css">
 		body {
@@ -24,14 +24,14 @@
 			align-items: center;
 			justify-content: space-between;
 			padding: 10px 0;
-			border-bottom: 5px solid #FF0000;
+			border-bottom: 5px solid #3F586C;
 			z-index: 999; /* sets the header element's z-index to a high value to ensure it appears above other elements */
 		}
 
 		.logo {
 			font-size: 30px;
 			font-weight: bold;
-			color: #FF0000;
+			color: #3F586C;
 			text-decoration: none; /* Remove underline */
 		}
 
@@ -68,7 +68,7 @@
 		.hero h1 {
 			font-size: 48px;
 			font-weight: bold;
-			color: #FF0000;
+			color: #3F586C;
 			text-align: center;
 			margin-bottom: 20px;
 			font-family: "Open Sans", sans-serif;
@@ -83,10 +83,10 @@
 		}
 
 		.cta button {
-			background-color: #FF0000;
+			background-color: #3F586C;
 			color: #FFFFFF;
 			padding: 10px 20px;
-			border: 2px solid #FF0000;
+			border: 2px solid #3F586C;
 			border-radius: 90px;
 			font-size: 24px;
 			font-weight: bold;
@@ -97,12 +97,12 @@
 
 		.cta button:hover {
 			background-color: #FFFFFF;
-			color: #FF0000;
-			border: 2px solid #FF0000;
+			color: #3F586C;
+			border: 2px solid #3F586C;
 		}
 
 		.footer {
-			background-color: #FF0000;
+			background-color: #3F586C;
 			color: #FFFFFF;
 			text-align: center;
 			padding: 10px;
@@ -122,7 +122,9 @@
 	<div class="container">
 		<header class="header">
 			{% block header %}
-			<a href={{ url_for('home') }} class="logo">Smart Pharmacy</a>
+			<a href={{ url_for('home') }}>
+				<img src="{{ url_for('static', filename='otoo.png') }}" alt="Product 1" style="width: 160px; height: 70px;">
+			</a>
 			{% endblock %}
 		</header>
 	</div>

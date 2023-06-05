@@ -2,18 +2,19 @@ import RPi.GPIO as GPIO
 import time
 import serial
 import logging
+#import paho.mqtt.client as mqtt
 
 
 
-def dispense(request, location):
+def dispense(request, location, ser):
 	# Ender Starters 
 	
-	serial_port = '/dev/ttyUSB1'
-	baud_rate = 115200
+	# ~ serial_port = '/dev/ttyUSB0'
+	# ~ baud_rate = 115200
 
-	ser = serial.Serial(serial_port, baud_rate, timeout=1)
+	# ~ ser = serial.Serial(serial_port, baud_rate, timeout=1)
 
-	logging.basicConfig(filename='printer.log', level=logging.INFO)
+	# ~ logging.basicConfig(filename='printer.log', level=logging.INFO)
 
 	# Ender Functions
 	
@@ -69,9 +70,9 @@ def dispense(request, location):
 		try:
 			medication_positions = {
 				1: 5,
-				2: 200,
-				3: 300,
-				4: 400,
+				2: 120,
+				3: 240,
+				4: 360,
 				5: 500,
 				6: 600,
 				7: 700,
@@ -120,7 +121,8 @@ def dispense(request, location):
  
 	# Set the GPIO mode
 	GPIO.setmode(GPIO.BCM)
-	BEAM_PIN = 27
+	IR_LIST = [27, 22, 5, 6]
+	BEAM_PIN = IR_LIST[location - 1]
 	enable_pin_disp = 18
 	
 	# Define the GPIO pins connected to the MDD10A inputs
@@ -158,7 +160,7 @@ def dispense(request, location):
 	#TODO
 	
 	# Open Blade
-	motor_forward(70)
+	motor_forward(80)
 	time.sleep(0.2)
 	motor_stop()
 	
@@ -176,8 +178,8 @@ def dispense(request, location):
 	GPIO.setup(BEAM_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 	GPIO.add_event_detect(BEAM_PIN, GPIO.BOTH, callback=break_beam_callback)
 	
-
-	relay_pin = 4
+	MOTOR_LIST = [4, 17, 13, 19]
+	relay_pin = MOTOR_LIST[location-1]
 		
 	# Set up the GPIO pins
 	GPIO.setup(relay_pin, GPIO.OUT)
@@ -216,9 +218,15 @@ def dispense(request, location):
 		
 
 	GPIO.cleanup()
+	return True
 	
 		
 
 if __name__ == '__main__':
+	serial_port = '/dev/ttyUSB1'
+	baud_rate = 115200
+
+	ser = serial.Serial(serial_port, baud_rate, timeout=1)
 	a = input("Choose the number of pills:")
-	dispense(int(a))
+	b = input("Choose the location of pills:")
+	dispense(int(a), int(b),ser)

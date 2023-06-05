@@ -24,7 +24,16 @@
 	.hero h1 {
 		font-size: 48px;
 		font-weight: bold;
-		color: #FF0000;
+		color: #3F586C;
+		text-align: center;
+		margin-bottom: 10px;
+		font-family: "Open Sans", sans-serif;
+	}
+	
+	.hero h3 {
+		font-size: 18px;
+		font-weight: bold;
+		color: #3F586C;
 		text-align: center;
 		margin-bottom: 20px;
 		font-family: "Open Sans", sans-serif;
@@ -92,10 +101,10 @@
 	}
 
 	.quantity button {
-		background-color: #FF0000;
+		background-color: #3F586C;
 		color: #FFFFFF;
 		padding: 10px 20px;
-		border: 2px solid #FF0000;
+		border: 2px solid #3F586C;
 		border-radius: 30px;
 		font-size: 24px;
 		font-weight: bold;
@@ -106,8 +115,8 @@
 
 	.quantity button:hover {
 		background-color: #FFFFFF;
-		color: #FF0000;
-		border: 2px solid #FF0000;
+		color: #3F586C;
+		border: 2px solid #3F586C;
 	}
 	
 	.scroll {
@@ -123,6 +132,25 @@
 		padding: 20px;
 		position: inline-block;
 	}
+	
+	.cta button {
+		background-color: #3F586C;
+		color: #FFFFFF;
+		padding: 10px 20px;
+		border: 2px solid #3F586C;
+		border-radius: 90px;
+		font-size: 24px;
+		font-weight: bold;
+		margin: 0 10px;
+		cursor: pointer;
+		font-family: "Open Sans", sans-serif;
+	}
+
+	.cta button:hover {
+		background-color: #FFFFFF;
+		color: #3F586C;
+		border: 2px solid #3F586C;
+	}
 
 
 
@@ -130,8 +158,17 @@
 <body>
 	<div class="hero" style="height: 80px">
 		<h1>{{ template_title }}</h1>
+		<h3>Select Medicine and Number of Packets (2 Pills per Packet)</h3>
 	</div>
-	<div class="container" style="max-width: 1900px;">
+	<div class="cta" style="position: absolute; left: 80px; top: 120px;">
+		<button class="cta button" onclick="goBack()">Back</button>
+		<script>
+		function goBack() {
+		  window.history.back();
+		}
+		</script>
+	</div>
+	<div class="container" style="max-width: 1240px;">
 		<div class="scroll">
 			{% for num, med in template_meds.items() %}
 			<div class="product" id="{{ med.name }}">
@@ -140,8 +177,8 @@
 		<!--		<p>{{ med.pill_per_dose }} Pills Per Dose</p>-->
 				<div class="quantity">
 					<button class="decrement" id="dec">-</button>
-					<input type="number" id="quantity" name="quantity" min="2"
-						   value="2" step={{ med.pill_per_dose }} max="10">
+					<input type="number" id="quantity" name="quantity" min="1"
+						   value="1" step=1 max="5">
 					<button class="increment" id="inc">+</button>
 				</div>
 				<div class="cta">

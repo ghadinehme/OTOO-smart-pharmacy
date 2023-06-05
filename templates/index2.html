@@ -66,6 +66,18 @@
 	<div class="hero" style="height: 150px">
 		<h1>Choose the Medication to Replace</h1>
 	</div>
+	<div class="cta" style="justify-content: center; align-items: center; display: flex;">
+		<p><button class=".cta button" onclick="lock()">Lock Door</button></p>
+		<p><button class=".cta button" onclick="unlock()">Unlock Door</button></p>
+		<script>
+			function lock() {
+			  fetch('/lock');
+			}
+			function unlock() {
+			  fetch('/unlock');
+			}
+		</script>
+	</div>
 	<div class="product-grid">
 		{% for num, med in template_meds.items() %}
 		<div class="product">

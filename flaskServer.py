@@ -14,6 +14,10 @@ import numpy as np
 from flask_sqlalchemy import SQLAlchemy
 import paho.mqtt.client as mqtt
 import json
+import serial
+import logging
+import solenoid
+import led
 
 import requests
 # from pyzbar.pyzbar import decode
@@ -31,10 +35,26 @@ except ImportError:
 import time
 
 
+serial_port = '/dev/ttyUSB1'
+baud_rate = 115200
+
+ser = serial.Serial(serial_port, baud_rate, timeout=1)
+
+# ~ logging.basicConfig(filename='printer.log', level=logging.INFO)
+
+serial_port_qr = '/dev/ttyUSB0'
+
+baud_rate = 38400
+
+ser_qr = serial.Serial(serial_port_qr, baud_rate, timeout=1)
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'mysecret'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///myDB.db' #path to database and its name
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False #to supress warning
+app.config['SERVER_NAME'] = '127.0.0.1:5050'  
+app.config['APPLICATION_ROOT'] = '/'  
+app.config['PREFERRED_URL_SCHEME'] = 'http'  
 db = SQLAlchemy(app) #database instance
 
 #Declare Database Types that are Instantiated in helper.py
@@ -68,9 +88,9 @@ class Medication(db.Model):
                         db.ForeignKey('pharmacy.id'))  # foreign key column
 
 # Use when setting up machine to create database
-#with app.app_context():
+# ~ with app.app_context():
     # Use SQLAlchemy functionality that requires the application context
-#    db.create_all()
+    # ~ db.create_all()
 
 ############################################################################
 ########################## Setup MQTT ######################################
@@ -79,6 +99,7 @@ class Medication(db.Model):
 def on_connect(client, userdata, flags, rc):
     print("Connected to MQTT broker with result code: " + str(rc))
     client.subscribe("order")
+    client.subscribe("done")
     
 def on_message(client, userdata, msg):
     topic = msg.topic
@@ -92,8 +113,32 @@ def on_message(client, userdata, msg):
         quantity = json_data["quantity"]
         print("Received MSG");
         print(f"Order loaction is {location} with quantity of {quantity}.")
-        advance.dispense(int(quantity / 2) - 1, location)
+        isDone = False;
+        isDone = advance.dispense(int(quantity / 2), location, ser)
+        print(isDone)
+            
+        # Send a message to a different topic
+        different_topic = "done"
+        data = {
+            "isDone": 1
+        }
+        json_data = json.dumps(data)
+        client.publish(different_topic, json_data)
+
         # Process topic1 message as needed
+    if topic == "done":
+        # Handle message for order
+        json_data = json.loads(payload)
+        isDone = json_data["isDone"]
+        
+        print("Received MSG")
+        # ~ with app.test_request_context():
+            # ~ print("dome")
+            # ~ home_url = url_for('home')
+            # ~ print(home_url)
+            # ~ redirect(home_url)
+
+        
         
 broker_address = "localhost"
 port = 1883
@@ -132,6 +177,7 @@ class RefillForm(FlaskForm):
     
 @app.route("/", methods=["GET", "POST"])
 def home():
+    solenoid.lock()
     next_form = NextForm()
     admin_form = AdminForm()
     if request.method == "POST":
@@ -180,7 +226,7 @@ def index(ailment):
         topic = "order"
         data = {
             "location": 1,
-            "quantity": 4
+            "quantity": 2
         }
         # modify the amt_left of drug purchased
         existing_medication = Medication.query.get(data["location"])
@@ -202,8 +248,18 @@ def order_success():
 
 #################### Admin Endpoints #########################
 
+@app.route("/lock", methods=["GET"])
+def lock():
+    solenoid.lock()
+    
+@app.route("/unlock", methods=["GET"])
+def unlock():
+    solenoid.unlock()
+
 @app.route("/admin_portal", methods=["GET", "POST"])
 def replace():
+    solenoid.unlock()
+    led.turn_off_leds()
     meds = Pharmacy.query.get(1).meds.all()
     keys = list(range(1, (len(meds) + 1)))
 
@@ -213,6 +269,7 @@ def replace():
 
     if order_form.validate_on_submit():
         location_store = request.form['location']
+        led.turn_on_led(int(location_store) - 1)
         return redirect(url_for("qr", location_store=location_store))
 
     return render_template("index2.html", template_meds=medications,
@@ -229,7 +286,7 @@ def qr(location_store):
         db.session.delete(medication_old)
         db.session.commit()
 
-        medicine_string = read_qr()
+        medicine_string = read_qr(ser_qr)
         medicine_json = json.loads(medicine_string)
         medicine_name = medicine_json["name"]
         amt_left = medicine_json["amt_left"]
@@ -277,6 +334,7 @@ def admin():
     if admin_form.validate_on_submit():
         input_password = request.form['password']
         if check_password_hash(hashed_correct_password, input_password):
+            solenoid.unlock()
             return redirect(url_for("replace"))
     response = make_response(render_template("admin.html", template_form=admin_form,
                            error_message=error_message))
