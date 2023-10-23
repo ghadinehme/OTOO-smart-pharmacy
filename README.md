@@ -1,1 +1,1 @@
-# PillDispensorProject
+# OTOO-smart-pharmacy
